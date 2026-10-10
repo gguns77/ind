@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>리버스카이 | CTO · Engineering Leader</title>
+<meta name="description" content="이커머스 플랫폼 개발조직을 이끄는 엔지니어링 리더, 리버스카이의 경력과 업무 소개">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F6F8; --surface:#FFFFFF; --soft:#E8EEF3;
+  --ink:#0F1D2B; --ink-2:#44546A; --ink-3:#7D8B9C; --line:#D7DFE7;
+  --river:#2448C9; --river-2:#5C7BEA; --water:#0F8C8A;
+  --display:"Hahmlet","Noto Serif KR",Georgia,serif;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C141D; --surface:#121C27; --soft:#18242F;
+    --ink:#E5ECF3; --ink-2:#A7B4C3; --ink-3:#6E7D8E; --line:#24313F;
+    --river:#7E9BFF; --river-2:#5C7BEA; --water:#45C7C1; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C141D; --surface:#121C27; --soft:#18242F;
+  --ink:#E5ECF3; --ink-2:#A7B4C3; --ink-3:#6E7D8E; --line:#24313F;
+  --river:#7E9BFF; --river-2:#5C7BEA; --water:#45C7C1; color-scheme:dark;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(24px + env(safe-area-inset-top,0px))}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased}
+a{color:var(--river)}
+:focus-visible{outline:2px solid var(--river);outline-offset:3px;border-radius:6px}
+button{font:inherit;color:inherit}
+
+.page{max-width:1120px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:64px}
+
+/* side nav */
+nav.side{position:sticky;top:calc(48px + env(safe-area-inset-top,0px));align-self:start;padding-top:56px}
+.side .mark{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em;margin-bottom:28px;display:block;color:var(--ink);text-decoration:none}
+.side ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+.side a{display:block;padding:7px 0 7px 16px;margin-left:-1px;border-left:2px solid transparent;color:var(--ink-3);text-decoration:none;font-size:14px;transition:color .2s,border-color .2s}
+.side a:hover{color:var(--ink)}
+.side a.on{color:var(--ink);border-left-color:var(--river);font-weight:500}
+
+main{padding:56px 0 96px;min-width:0}
+
+/* hero */
+.hero{padding-bottom:56px;border-bottom:1px solid var(--line);position:relative}
+.hero .role{font-size:15px;color:var(--ink-2);margin:0 0 14px}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(52px,9vw,104px);line-height:1;letter-spacing:-.04em;margin:0}
+.hero h1 .en{display:block;font-family:var(--sans);font-weight:400;font-size:clamp(15px,1.6vw,18px);letter-spacing:0;color:var(--ink-3);margin-top:14px}
+.river{display:block;width:100%;height:56px;margin:30px 0 26px;overflow:visible}
+.river path{fill:none;stroke-linecap:round}
+.river .a{stroke:var(--river);stroke-width:2;stroke-dasharray:900;stroke-dashoffset:900;animation:flow 1.8s cubic-bezier(.4,0,.2,1) .2s forwards}
+.river .b{stroke:var(--water);stroke-width:1.2;opacity:.6;stroke-dasharray:900;stroke-dashoffset:900;animation:flow 2.2s cubic-bezier(.4,0,.2,1) .45s forwards}
+@keyframes flow{to{stroke-dashoffset:0}}
+.lead{font-size:clamp(18px,2vw,21px);line-height:1.65;max-width:34em;margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin:30px 0 0;padding:0;list-style:none;font-size:14px;color:var(--ink-2)}
+.facts b{color:var(--ink);font-weight:600;margin-right:6px}
+
+/* sections */
+section{padding:72px 0 0}
+.sh{display:flex;align-items:baseline;gap:16px;margin:0 0 28px}
+.sh h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,3vw,32px);letter-spacing:-.025em;margin:0}
+.sh p{margin:0;color:var(--ink-3);font-size:14px}
+
+/* current role */
+.rolebox{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:30px 32px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px}
+.rolebox h3{margin:0;font-size:22px;font-weight:600;letter-spacing:-.015em}
+.rolebox .org{margin:4px 0 16px;color:var(--ink-2);font-size:15px}
+.rolebox ul{margin:0;padding:0 0 0 18px;color:var(--ink-2)}
+.rolebox li{margin:6px 0}
+.scale{display:grid;gap:12px;align-content:start}
+.scale div{border-left:2px solid var(--river);padding:2px 0 2px 16px}
+.scale b{display:block;font-family:var(--display);font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-.02em}
+.scale span{font-size:13.5px;color:var(--ink-2)}
+
+/* AX architecture */
+.ax{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:start}
+.ax p{margin:0 0 14px;color:var(--ink-2)}
+.stack{display:grid;gap:6px}
+.layer{all:unset;box-sizing:border-box;cursor:default;display:grid;grid-template-columns:28px 1fr;align-items:center;gap:12px;
+  padding:13px 16px;border-radius:10px;background:var(--surface);border:1px solid var(--line);transition:transform .25s cubic-bezier(.2,.8,.2,1),border-color .25s,background .25s}
+.layer i{font-style:normal;font-size:12px;color:var(--ink-3);font-weight:600}
+.layer b{font-weight:600;font-size:15px}
+.layer small{display:block;font-size:13px;color:var(--ink-3);max-height:0;overflow:hidden;opacity:0;transition:max-height .3s,opacity .3s,margin .3s}
+.layer:hover,.layer:focus-visible{transform:translateX(6px);border-color:var(--river)}
+.layer:hover small,.layer:focus-visible small{max-height:60px;opacity:1;margin-top:2px}
+.layer.core{background:color-mix(in srgb,var(--river) 10%,var(--surface));border-color:color-mix(in srgb,var(--river) 45%,var(--line))}
+.stack-cap{font-size:13px;color:var(--ink-3);margin-top:10px}
+
+/* work items */
+.works{display:grid;gap:10px}
+.work{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.work:hover{border-color:color-mix(in srgb,var(--river) 50%,var(--line))}
+.work.open{border-color:var(--river);box-shadow:0 14px 34px -24px var(--river)}
+.work button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:20px 24px}
+.work button:focus-visible{outline:2px solid var(--river);outline-offset:-2px;border-radius:14px}
+.work .tag{font-size:12.5px;color:var(--water);font-weight:600}
+.work h3{margin:2px 0 0;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.work .one{margin:4px 0 0;font-size:14.5px;color:var(--ink-2)}
+.pm{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);position:relative;transition:transform .3s,background .3s,border-color .3s}
+.pm::before,.pm::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.5px;background:var(--ink-2);transform:translate(-50%,-50%);transition:transform .3s,background .3s}
+.pm::after{transform:translate(-50%,-50%) rotate(90deg)}
+.work.open .pm{background:var(--river);border-color:var(--river);transform:rotate(180deg)}
+.work.open .pm::before,.work.open .pm::after{background:#fff}
+.work.open .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1)}
+.work.open .body{grid-template-rows:1fr}
+.body>div{overflow:hidden}
+.body ul{margin:0;padding:4px 24px 22px 42px;color:var(--ink-2);font-size:15px}
+.body li{margin:7px 0}
+.body li::marker{color:var(--river)}
+
+/* chips */
+.groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.grp{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.grp h3{margin:0 0 12px;font-size:15px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:13px;padding:5px 11px;border-radius:999px;background:var(--soft);color:var(--ink-2);transition:background .2s,color .2s}
+.chips span:hover{background:var(--river);color:#fff}
+
+/* edu */
+.edu{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.card .tag{font-size:12.5px;color:var(--water);font-weight:600}
+.card h3{margin:4px 0 8px;font-size:18px;font-weight:600}
+.card p{margin:0;color:var(--ink-2);font-size:15px}
+
+.closing{margin-top:88px;padding-top:40px;border-top:1px solid var(--line)}
+.closing p{font-family:var(--display);font-weight:500;font-size:clamp(20px,2.6vw,26px);line-height:1.5;letter-spacing:-.015em;max-width:30em;margin:0}
+.closing small{display:block;margin-top:18px;color:var(--ink-3);font-size:13px}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* career timeline */
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:111px;top:10px;bottom:10px;width:2px;
+  background:linear-gradient(var(--river),color-mix(in srgb,var(--water) 60%,transparent))}
+.job{display:grid;grid-template-columns:96px 32px minmax(0,1fr);align-items:start;padding:0 0 34px;position:relative}
+.job:last-child{padding-bottom:0}
+.when{font-size:13px;color:var(--ink-3);text-align:right;padding-top:3px;line-height:1.45}
+.when b{display:block;font-family:var(--display);font-size:20px;color:var(--ink);font-weight:700;letter-spacing:-.02em}
+.dot{justify-self:center;margin-top:9px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--river);position:relative;z-index:1;transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s}
+.job.now .dot{background:var(--river)}
+.job.now .dot::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px solid var(--river);animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{from{transform:scale(.6);opacity:.9}to{transform:scale(1.5);opacity:0}}
+.jc{margin-left:10px;padding:18px 22px;border-radius:14px;border:1px solid transparent;transition:background .3s,border-color .3s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.job:hover .jc{background:var(--surface);border-color:var(--line);transform:translateX(4px)}
+.job:hover .dot{transform:scale(1.3);background:var(--river)}
+.jc .co{font-size:13px;color:var(--water);font-weight:600}
+.jc h3{margin:2px 0 2px;font-size:19px;font-weight:600;letter-spacing:-.01em}
+.jc .dur{font-size:13.5px;color:var(--ink-3);margin:0 0 10px}
+.jc p{margin:0;color:var(--ink-2);font-size:15px}
+.teams{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding:0;list-style:none}
+.teams li{font-size:13px;padding:5px 11px;border-radius:8px;background:var(--soft);color:var(--ink-2)}
+.thread{margin-top:28px;padding:18px 22px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+.thread b{color:var(--ink);font-weight:600}
+@media (max-width:560px){
+  .tl::before{left:7px}
+  .job{grid-template-columns:16px minmax(0,1fr);row-gap:4px}
+  .dot{grid-column:1;grid-row:1;margin-top:6px}
+  .when{grid-column:2;grid-row:1;text-align:left;margin-left:10px}
+  .when b{display:inline;font-size:17px;margin-right:6px}
+  .jc{grid-column:2;grid-row:2}
+}
+
+@media (max-width:900px){
+  .page{grid-template-columns:1fr;gap:0}
+  nav.side{display:none}
+  .rolebox,.ax,.edu{grid-template-columns:1fr}
+  .groups{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .page{padding:0 18px}
+  main{padding-top:36px}
+  .rolebox{padding:24px 20px}
+  .work button{padding:18px}
+  .body ul{padding:2px 18px 20px 36px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .river path{stroke-dashoffset:0}
+  .reveal{opacity:1;transform:none}
+}
+@media print{
+  nav.side{display:none}
+  .page{grid-template-columns:1fr}
+  .body{grid-template-rows:1fr !important}
+  .reveal{opacity:1;transform:none}
+  .pm{display:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <nav class="side" aria-label="섹션">
+    <a class="mark" href="#top">리버스카이</a>
+    <ol>
+      <li><a href="#role">현재 역할</a></li>
+      <li><a href="#career">경력</a></li>
+      <li><a href="#ax">AI 전환</a></li>
+      <li><a href="#work">주요 업무</a></li>
+      <li><a href="#skills">역량</a></li>
+      <li><a href="#edu">학업과 커뮤니티</a></li>
+    </ol>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <p class="role">CTO · 검색엔진 개발자 출신 엔지니어링 리더</p>
+      <h1>리버스카이<span class="en">Riversky</span></h1>
+      <svg class="river" viewBox="0 0 800 56" preserveAspectRatio="none" aria-hidden="true">
+        <path class="a" d="M0 34 C120 6, 220 52, 340 28 S560 6, 680 26 S780 40, 800 30"/>
+        <path class="b" d="M0 44 C140 22, 240 58, 360 38 S580 18, 700 36 S780 48, 800 42"/>
+      </svg>
+      <p class="lead">검색엔진 개발자로 시작해 24년간 이커머스 검색, 데이터, 플랫폼을 만들어 왔습니다. 지금은 11번가 개발그룹 약 200명을 이끌며 대규모 시스템과 조직을 AI 중심으로 전환하고 있습니다.</p>
+      <ul class="facts">
+        <li><b>현재</b>11번가 개발그룹 총괄 CTO</li>
+        <li><b>경력</b>2002년부터, 이커머스 3사</li>
+        <li><b>관심</b>대규모 플랫폼 조직의 AX 전략</li>
+        <li><b>학업</b>성균관대 기술경영(MOT) 석사과정</li>
+      </ul>
+    </header>
+
+    <section id="role" class="reveal">
+      <div class="sh"><h2>현재 역할</h2><p>11번가</p></div>
+      <div class="rolebox">
+        <div>
+          <h3>개발그룹 총괄 CTO</h3>
+          <p class="org">11번가 · 2020년 10월 ~ 현재</p>
+          <ul>
+            <li>전시, 검색, 할인, 마케팅 등 커머스 전 영역의 개발 조직 운영</li>
+            <li>개발 전략, 아키텍처 방향, 조직 설계와 운영 모델 수립</li>
+            <li>경영진 대상 기술·AI 전략 보고와 전사 커뮤니케이션 주관</li>
+            <li>백엔드서비스개발유닛장 겸임 (개발자 18명, 기획자 5명)</li>
+          </ul>
+        </div>
+        <div class="scale">
+          <div><b>약 200명</b><span>개발조직 규모</span></div>
+          <div><b>약 10개</b><span>개발 유닛</span></div>
+          <div><b>개발 + 기획</b><span>겸임 유닛의 통합 운영 경험</span></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="career" class="reveal">
+      <div class="sh"><h2>경력</h2><p>2002 – 현재</p></div>
+      <ol class="tl">
+        <li class="job now">
+          <div class="when"><b>2020</b>10월 – 현재</div><span class="dot" aria-hidden="true"></span>
+          <div class="jc"><span class="co">11번가</span><h3>개발그룹 총괄 CTO</h3>
+            <p class="dur">2020년 10월 – 현재</p>
+            <p>개발그룹 약 200명, 약 10개 유닛을 총괄합니다. 커머스 전 영역의 개발 전략과 아키텍처, 조직 운영 모델을 책임지고 전사 AI 전환을 이끌고 있습니다.</p></div>
+        </li>
+        <li class="job">
+          <div class="when"><b>2010</b>5월 – 2020년 10월</div><span class="dot" aria-hidden="true"></span>
+          <div class="jc"><span class="co">Qoo10</span><h3>기술본부 Info Platform실 실장 (이사)</h3>
+            <p class="dur">10년 6개월</p>
+            <p>검색, 데이터, 사내 시스템을 아우르는 정보 플랫폼 조직을 이끌며 하위 3개 개발 조직을 관리했습니다.</p>
+            <ul class="teams"><li>AI·빅데이터 개발팀</li><li>검색엔진 개발그룹</li><li>BI 및 사내시스템 개발팀</li></ul></div>
+        </li>
+        <li class="job">
+          <div class="when"><b>2008</b>2월 – 2010년 5월</div><span class="dot" aria-hidden="true"></span>
+          <div class="jc"><span class="co">G마켓 (이베이코리아)</span><h3>Search R&amp;D팀 과장</h3>
+            <p class="dur">2년 4개월</p>
+            <p>국내 대표 오픈마켓의 검색엔진을 개발했습니다.</p></div>
+        </li>
+        <li class="job">
+          <div class="when"><b>2002</b>9월 – 2007년 12월</div><span class="dot" aria-hidden="true"></span>
+          <div class="jc"><span class="co">검색 솔루션 기술연구소</span><h3>연구원 (대리)</h3>
+            <p class="dur">5년 4개월</p>
+            <p>검색엔진, 크롤러, 웹문서 필터 솔루션을 개발하며 검색 기술의 기본기를 다졌습니다.</p></div>
+        </li>
+      </ol>
+      <p class="thread"><b>하나로 이어지는 흐름.</b> 검색엔진 개발자에서 검색 조직 리더로, 다시 데이터·AI 플랫폼과 개발그룹 전체를 이끄는 CTO로 범위를 넓혀 왔습니다. 검색과 데이터에서 출발한 경험이 지금의 AI 전환 전략의 바탕입니다.</p>
+    </section>
+
+    <section id="ax" class="reveal">
+      <div class="sh"><h2>AI 전환(AX)</h2><p>대표 이니셔티브</p></div>
+      <div class="ax">
+        <div>
+          <p>부서별 AI 에이전트가 사내 시스템과 데이터에 안전하게 접근하도록, 공통 MCP 계층을 중심에 둔 연합형(Federated) 엔터프라이즈 AI 에이전트 플랫폼을 설계했습니다.</p>
+          <p>사내 Confluence·Jira를 MCP로 연결하고, 사내 지식 검색 에이전트를 원격 MCP로 연동해 실제 업무에서 쓰이는 구조를 만들었습니다.</p>
+          <p>위키·Jira 자동 업데이트, 회의 자동화 파이프라인, 부서별 모닝 브리핑 에이전트로 업무 사이클 자동화를 추진하고 있습니다.</p>
+        </div>
+        <div>
+          <div class="stack" role="list">
+            <div class="layer" tabindex="0" role="listitem"><i>5</i><span><b>사용자 채널</b><small>메신저, 웹, 사내 도구 등 업무 접점</small></span></div>
+            <div class="layer" tabindex="0" role="listitem"><i>4</i><span><b>부서별 에이전트</b><small>부서 업무에 특화된 AI 에이전트</small></span></div>
+            <div class="layer" tabindex="0" role="listitem"><i>3</i><span><b>에이전트 런타임</b><small>실행, 권한, 관측을 담당하는 공통 기반</small></span></div>
+            <div class="layer core" tabindex="0" role="listitem"><i>2</i><span><b>공유 MCP 계층</b><small>위키·이슈·지식검색 등을 표준 인터페이스로 제공</small></span></div>
+            <div class="layer" tabindex="0" role="listitem"><i>1</i><span><b>데이터와 시스템</b><small>사내 데이터, 레거시, 운영 시스템</small></span></div>
+          </div>
+          <p class="stack-cap">설계한 5계층 아키텍처. 각 층에 마우스를 올리면 역할이 보입니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="reveal">
+      <div class="sh"><h2>주요 업무</h2><p>눌러서 자세히 보기</p></div>
+      <div class="works">
+
+        <article class="work">
+          <button aria-expanded="false"><span><span class="tag">AI · 검색</span><h3>AI 모델 평가와 자연어 검색 전략</h3>
+            <p class="one">모델 벤치마크와 Make-or-Buy 판단으로 검색 고도화 방향 수립</p></span><span class="pm" aria-hidden="true"></span></button>
+          <div class="body"><div><ul>
+            <li>GPT·Kimi 계열 모델을 쿼리 확장, 카탈로그 매칭, 대규모 매칭 과제로 비교 평가하고 사내 공유용 리포트로 정리</li>
+            <li>자연어 검색을 위한 구조화된 상품 지식 데이터 도입안을 분석해, 성공 조건 프레임워크와 Make-vs-Buy 전략 판단을 경영진에 브리핑</li>
+          </ul></div></div>
+        </article>
+
+        <article class="work">
+          <button aria-expanded="false"><span><span class="tag">커머스 · 개인화</span><h3>LLM 기반 초개인화 타겟팅 기획전</h3>
+            <p class="one">고객 행동별로 다른 추천 확장 전략을 설계</p></span><span class="pm" aria-hidden="true"></span></button>
+          <div class="body"><div><ul>
+            <li>상품 기획전에 LLM 기반 개인화를 적용하는 구조를 설계</li>
+            <li>구매 고객은 카테고리 확장, 조회 후 미구매 고객은 같은 공간·용도까지만 확장하는 등 고객 상황별 추천 범위 정책 수립</li>
+          </ul></div></div>
+        </article>
+
+        <article class="work">
+          <button aria-expanded="false"><span><span class="tag">커머스 · 프라이싱</span><h3>할인 구조 개선</h3>
+            <p class="one">이해관계자 조율과 경영진 보고를 이끈 전사 과제</p></span><span class="pm" aria-hidden="true"></span></button>
+          <div class="body"><div><ul>
+            <li>플랫폼 할인 구조 개선 과제에서 관련 부서 간 조율과 의사결정 지원</li>
+            <li>복잡한 논의를 한 장 요약으로 정리해 경영진 보고</li>
+          </ul></div></div>
+        </article>
+
+        <article class="work">
+          <button aria-expanded="false"><span><span class="tag">조직 설계</span><h3>운영 모델과 조직 전환</h3>
+            <p class="one">기능 조직에서 목적 조직으로, 유닛 통합과 역할 전환 설계</p></span><span class="pm" aria-hidden="true"></span></button>
+          <div class="body"><div><ul>
+            <li>백엔드서비스개발유닛과 할인서비스개발유닛의 통합 설계</li>
+            <li>기획과 개발이 한 조직에서 일하는 목적 조직 전환 검토, 고효율 카테고리(패션·반려동물·리빙·마트)를 파일럿 도메인으로 지정</li>
+            <li>기획자의 개발유닛 합류에 맞춘 커뮤니케이션과 새 운영 모델 공지 설계</li>
+            <li>성장과 커리어 중심의 1:1 대화 프레임 마련</li>
+          </ul></div></div>
+        </article>
+
+        <article class="work">
+          <button aria-expanded="false"><span><span class="tag">아키텍처</span><h3>레거시 정리와 시스템 효율화</h3>
+            <p class="one">한정된 리소스로 리스크를 줄이는 개발그룹 전략</p></span><span class="pm" aria-hidden="true"></span></button>
+          <div class="body"><div><ul>
+            <li>잘게 쪼개진 MSA의 통합과 레거시 제거 로드맵 수립</li>
+            <li>기여도가 낮은 서비스·시스템을 선별해 단계적으로 종료하는 기준 마련</li>
+            <li>모바일 조직 하반기 미션 정의, KMP 기반 Android·iOS 통합 검토</li>
+          </ul></div></div>
+        </article>
+
+        <article class="work">
+          <button aria-expanded="false"><span><span class="tag">빌더</span><h3>직접 만드는 AI 자동화</h3>
+            <p class="one">리더이면서 직접 도구를 만들고 실험합니다</p></span><span class="pm" aria-hidden="true"></span></button>
+          <div class="body"><div><ul>
+            <li>업무용 Claude 스킬과 MCP 연동을 직접 개발 (뉴스 요약, 메신저 연동, 주간 업무 요약 자동 게시 등)</li>
+            <li>Playwright 기반 이커머스 판매자 검증 워크플로우 구현</li>
+            <li>SQL·데이터 파이프라인 문제를 직접 디버깅할 정도로 실무 감각 유지</li>
+          </ul></div></div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="skills" class="reveal">
+      <div class="sh"><h2>역량</h2></div>
+      <div class="groups">
+        <div class="grp"><h3>리더십</h3><div class="chips">
+          <span>24년 개발 경력</span><span>200명 규모 조직 운영</span><span>조직 설계</span><span>목적 조직 전환</span><span>변화관리</span><span>경영진 보고</span><span>전사 커뮤니케이션</span></div></div>
+        <div class="grp"><h3>기술 전략</h3><div class="chips">
+          <span>엔터프라이즈 AI 플랫폼</span><span>MCP</span><span>AI 에이전트</span><span>MSA</span><span>레거시 현대화</span><span>검색엔진</span><span>검색·개인화</span></div></div>
+        <div class="grp"><h3>실무 도구</h3><div class="chips">
+          <span>Claude 스킬</span><span>Playwright</span><span>SQL</span><span>데이터 파이프라인</span><span>Confluence·Jira</span><span>KMP</span></div></div>
+      </div>
+    </section>
+
+    <section id="edu" class="reveal">
+      <div class="sh"><h2>학업과 커뮤니티</h2></div>
+      <div class="edu">
+        <div class="card"><span class="tag">2026년 3월 입학</span><h3>성균관대학교 기술경영(MOT) 석사과정</h3>
+          <p>기술전략, 기술기획, 린스타트업, 오픈이노베이션 등을 공부하며 현업의 AI 전환 경험을 경영 이론과 연결하고 있습니다.</p></div>
+        <div class="card"><span class="tag">20기</span><h3>원우회 회장</h3>
+          <p>동기 원우회를 이끌며 교수진 소통, 콜로키움과 학기 행사를 기획·운영하고 있습니다.</p></div>
+      </div>
+    </section>
+
+    <footer class="closing reveal">
+      <p>거대한 시스템과 큰 조직이 더 가볍고 빠르게 움직이도록, 사람과 AI가 함께 일하는 구조를 설계합니다.</p>
+      <small>개인 연락처와 신상 정보는 포함하지 않았습니다.</small>
+    </footer>
+  </main>
+</div>
+
+<script>
+document.querySelectorAll(".work button").forEach(b=>{
+  b.addEventListener("click",()=>{
+    const w=b.closest(".work"), open=!w.classList.contains("open");
+    w.classList.toggle("open",open); b.setAttribute("aria-expanded",open);
+  });
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+const links=[...document.querySelectorAll(".side ol a")];
+const spy=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}
+}),{rootMargin:"-40% 0px -55% 0px"});
+document.querySelectorAll("main section[id]").forEach(s=>spy.observe(s));
+</script>
+</body>
+</html>
