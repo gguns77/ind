@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>편의점 자동 발주 기술로드맵</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F4F7; --surface:#FFFFFF; --surface-2:#F8F9FB;
+  --ink:#151C27; --ink-2:#465263; --ink-3:#7F8A99; --line:#DDE2E9;
+  --market:#5B6A7D; --product:#3A4BD6; --tech:#08806F; --resource:#B8730E;
+  --vision:#2A35A3; --vision-ink:#FFFFFF; --vision-sub:#C9CEFF;
+  --focus:#3A4BD6;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E131A; --surface:#161D27; --surface-2:#1B2330;
+    --ink:#E6EBF2; --ink-2:#A9B3C1; --ink-3:#6F7A89; --line:#283240;
+    --market:#93A2B6; --product:#8C98FF; --tech:#3CC6AF; --resource:#E5A448;
+    --vision:#2C389F; --vision-ink:#FFFFFF; --vision-sub:#C3C9FF;
+    --focus:#8C98FF; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E131A; --surface:#161D27; --surface-2:#1B2330;
+  --ink:#E6EBF2; --ink-2:#A9B3C1; --ink-3:#6F7A89; --line:#283240;
+  --market:#93A2B6; --product:#8C98FF; --tech:#3CC6AF; --resource:#E5A448;
+  --vision:#2C389F; --vision-ink:#FFFFFF; --vision-sub:#C3C9FF;
+  --focus:#8C98FF; color-scheme:dark;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;word-break:keep-all}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:40px 28px 72px}
+
+/* header */
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.top h1{margin:0;font-size:clamp(28px,4vw,40px);line-height:1.15;font-weight:700;letter-spacing:-.025em}
+.top p{margin:10px 0 0;color:var(--ink-2);font-size:15px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+
+/* roadmap grid */
+.rm{display:grid;grid-template-columns:92px repeat(3,minmax(0,1fr)) minmax(0,.92fr);
+  grid-template-rows:auto repeat(5,auto);gap:10px;position:relative}
+.time{grid-row:1;font-size:14px;font-weight:600;color:var(--ink);padding:0 4px 14px;position:relative}
+.time small{display:block;font-weight:400;color:var(--ink-3);font-size:12px}
+.time.hl{color:var(--product)}
+.axis{grid-row:1;grid-column:2 / 6;align-self:end;height:2px;background:var(--line);position:relative;margin-bottom:4px}
+.axis::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:8px solid var(--line);border-right:0}
+.lbl{grid-column:1;display:flex;flex-direction:column;justify-content:center;padding-left:14px;position:relative}
+.lbl::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:2px;background:var(--c)}
+.lbl b{font-size:17px;font-weight:600}
+.lbl span{font-size:12px;color:var(--ink-3)}
+
+.card{all:unset;box-sizing:border-box;cursor:pointer;position:relative;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;padding:16px 16px 14px;min-height:92px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:6px;overflow:hidden;
+  transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,border-color .22s,opacity .22s}
+.card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--c);transform-origin:left;transition:height .22s}
+.card::after{content:"";position:absolute;inset:0;background:var(--c);opacity:0;transition:opacity .22s;pointer-events:none}
+.card .t{font-size:16px;font-weight:600;letter-spacing:-.01em;position:relative;z-index:1}
+.card .s{font-size:13px;color:var(--ink-2);position:relative;z-index:1}
+.card .go{position:absolute;right:14px;bottom:12px;font-size:12px;color:var(--c);font-weight:600;opacity:0;transform:translateX(-6px);transition:.22s;z-index:1}
+.card .pt{display:none;font-size:11px;color:var(--ink-3)}
+.card:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+@media (hover:hover){
+  .card:hover{transform:translateY(-3px);border-color:var(--c);box-shadow:0 10px 24px -14px var(--c)}
+  .card:hover::before{height:5px}
+  .card:hover::after{opacity:.05}
+  .card:hover .go{opacity:1;transform:none}
+  .card:hover .s{padding-right:58px}
+  .rm.hovering .card:not(:hover):not(.rel){opacity:.55}
+}
+.card:active{transform:scale(.98)}
+
+.vision{all:unset;box-sizing:border-box;cursor:pointer;grid-column:5;grid-row:2 / 7;border-radius:14px;
+  background:var(--vision);color:var(--vision-ink);padding:28px 22px;display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.vision .ring{position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.18);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.vision .ring.r2{width:320px;height:320px;right:-110px;top:-110px;border-color:rgba(255,255,255,.1)}
+.vision .vt{font-size:26px;line-height:1.2;font-weight:700;letter-spacing:-.02em;margin:0 0 22px}
+.vision ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:14px;color:var(--vision-sub)}
+.vision li{display:flex;align-items:center;gap:10px}
+.vision li::before{content:"";width:16px;height:2px;background:var(--vision-sub)}
+.vision .go{margin-top:26px;font-size:13px;font-weight:600;opacity:.85}
+@media (hover:hover){
+  .vision:hover{transform:translateY(-3px);box-shadow:0 18px 36px -18px var(--vision)}
+  .vision:hover .ring{transform:scale(1.15)}
+  .rm.hovering .vision:not(:hover){opacity:.7}
+}
+.vision:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+
+.hint{margin-top:22px;font-size:13px;color:var(--ink-3)}
+
+/* detail */
+.view{animation:none}
+.detail{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}
+.bar{display:flex;align-items:center;gap:14px;margin-bottom:28px;flex-wrap:wrap}
+.back{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;
+  padding:8px 14px 8px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);transition:.2s}
+.back svg{transition:transform .2s}
+.back:hover{border-color:var(--ink-3)}
+.back:hover svg{transform:translateX(-3px)}
+.back:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.crumb{font-size:13px;color:var(--ink-3)}
+
+.hero{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px 30px 26px;overflow:hidden;view-transition-name:hero}
+.hero::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--c)}
+.hero.is-vision{background:var(--vision);border-color:var(--vision);color:var(--vision-ink)}
+.hero.is-vision::before{display:none}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--c);
+  padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--c) 12%,transparent)}
+.hero.is-vision .chip{color:var(--vision-ink);background:rgba(255,255,255,.14)}
+.hero h2{margin:14px 0 4px;font-size:clamp(26px,3.4vw,34px);line-height:1.2;font-weight:700;letter-spacing:-.025em}
+.hero .sub{margin:0;color:var(--ink-2);font-size:15px}
+.hero.is-vision .sub{color:var(--vision-sub)}
+.summary{margin:22px 0 0;font-size:16px;line-height:1.75;max-width:62ch}
+
+.sec{margin-top:34px;opacity:0;transform:translateY(8px);animation:rise .45s cubic-bezier(.2,.8,.2,1) forwards}
+.sec h3{margin:0 0 12px;font-size:18px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.sec h3::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c)}
+@keyframes rise{to{opacity:1;transform:none}}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px}
+th,td{text-align:left;padding:11px 14px;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:13px;font-weight:600;color:var(--ink-2);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+tbody tr{transition:background .15s}
+tbody tr:hover{background:color-mix(in srgb,var(--c) 6%,transparent)}
+.list{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.list li{position:relative;padding:12px 14px 12px 34px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:15px}
+.list li::before{content:"";position:absolute;left:15px;top:22px;width:8px;height:2px;background:var(--c)}
+.formula{font-size:16px;font-weight:600;padding:16px 18px;border-radius:10px;background:color-mix(in srgb,var(--c) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 30%,transparent);line-height:1.6}
+.formula small{display:block;font-weight:400;color:var(--ink-2);font-size:13.5px;margin-top:6px}
+.key{margin-top:36px;padding:20px 22px;border-radius:12px;border-left:4px solid var(--c);border-radius:0 12px 12px 0;background:var(--surface);font-size:15.5px}
+.key b{display:block;font-size:13px;color:var(--c);margin-bottom:4px}
+
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:44px}
+.pg{all:unset;box-sizing:border-box;cursor:pointer;padding:16px 18px;border:1px solid var(--line);border-radius:10px;background:var(--surface);transition:.2s;min-width:0}
+.pg small{display:block;font-size:12px;color:var(--ink-3)}
+.pg span{display:block;font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pg.next{text-align:right}
+.pg:hover{border-color:var(--c);transform:translateY(-2px)}
+.pg:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.pg[disabled]{visibility:hidden}
+
+/* minimap */
+.mini{position:sticky;top:calc(24px + env(safe-area-inset-top,0px));background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.mini h4{margin:0 0 12px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.mg{display:grid;grid-template-columns:repeat(3,1fr) 34px;gap:4px}
+.mc{all:unset;box-sizing:border-box;cursor:pointer;font-size:11px;line-height:1.3;padding:6px 6px 6px 8px;border-radius:5px;
+  background:var(--surface-2);color:var(--ink-2);position:relative;transition:.18s;min-height:30px}
+.mc::before{content:"";position:absolute;left:0;top:5px;bottom:5px;width:2px;border-radius:2px;background:var(--c)}
+.mc:hover{background:color-mix(in srgb,var(--c) 14%,var(--surface-2));color:var(--ink)}
+.mc.on{background:var(--c);color:#fff}
+.mc.on::before{display:none}
+.mc:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+.mv{all:unset;cursor:pointer;grid-column:4;grid-row:1 / 7;border-radius:5px;background:color-mix(in srgb,var(--vision) 70%,var(--surface-2));
+  writing-mode:vertical-rl;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;transition:.18s}
+.mv.on,.mv:hover{background:var(--vision)}
+.mv:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+.mini .tip{margin:12px 0 0;font-size:12px;color:var(--ink-3)}
+
+/* view transitions */
+.fade-in{animation:viewIn .38s cubic-bezier(.2,.8,.2,1)}
+@keyframes viewIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.28s}
+::view-transition-group(hero){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(hero),::view-transition-new(hero){height:100%;object-fit:none;object-position:top left}
+
+[hidden]{display:none !important}
+
+@media (max-width:960px){
+  .detail{grid-template-columns:1fr}
+  .mini{position:static}
+}
+@media (max-width:780px){
+  .wrap{padding:28px 18px 56px}
+  .rm{display:flex;flex-direction:column;gap:10px}
+  .time,.axis{display:none}
+  .lbl{padding:18px 0 4px 14px}
+  .lbl::before{top:20px;bottom:6px}
+  .card .pt{display:block}
+  .card .go{display:none}
+  .vision{margin-top:14px}
+  .hero{padding:24px 20px}
+  .pager{grid-template-columns:1fr}
+  .pg.next{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none !important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <main id="grid-view" class="view">
+    <header class="top">
+      <div>
+        <h1>편의점 자동 발주 기술로드맵</h1>
+        <p>추천에서 자동, 자율로. 박스를 누르면 단계별 상세 설계가 열립니다.</p>
+      </div>
+      <div class="legend" aria-hidden="true">
+        <span><i style="background:var(--market)"></i>시장</span>
+        <span><i style="background:var(--product)"></i>제품</span>
+        <span><i style="background:var(--tech)"></i>기술</span>
+        <span><i style="background:var(--resource)"></i>자원</span>
+      </div>
+    </header>
+    <div class="rm" id="rm"></div>
+    <p class="hint">키보드: Tab으로 이동, Enter로 열기. 상세 화면에서 ← → 로 앞뒤 단계, Esc로 돌아오기.</p>
+  </main>
+
+  <main id="detail-view" class="view" hidden></main>
+</div>
+
+<script>
+const LAYERS = {
+  market:{name:"시장",en:"Why",c:"var(--market)"},
+  product:{name:"제품",en:"What",c:"var(--product)"},
+  tech:{name:"기술",en:"How",c:"var(--tech)"},
+  resource:{name:"자원",en:"Resource",c:"var(--resource)"},
+  vision:{name:"비전",en:"Goal",c:"var(--vision)"}
+};
+const PERIODS = ["","단기 0–1년","중기 1–3년","장기 3–5년"];
+
+const N = [
+/* ---------------- MARKET ---------------- */
+{id:"m1",layer:"market",col:1,t:"발주 업무 부담",s:"인건비·숙련도",
+ sum:"점주는 매일 마감 전 수백 개 SKU의 발주량을 경험에 의존해 결정합니다. 시간 부담이 크고, 점주 숙련도에 따라 점포 성과가 크게 갈립니다.",
+ sec:[
+  {h:"문제 정의",t:["구분","현상","영향"],r:[
+   ["시간 부담","매일 반복되는 SKU별 수량 판단","점주 피로, 다른 운영 업무 소홀"],
+   ["숙련도 편차","경력 점주와 신규 점주의 판단 차이","신규 점포 조기 안정화 어려움"],
+   ["인력 구조","인건비 상승, 아르바이트 잦은 이직","발주를 위임할 사람 부족"]]},
+  {h:"이해관계자별 가치",t:["대상","얻는 가치"],r:[
+   ["점주","발주 시간 단축, 판단 부담 감소"],
+   ["본부","가맹점 성과 평준화, 신규점 안정화"],
+   ["고객","원하는 상품이 있을 확률 상승"]]},
+  {h:"현장에서 검증할 가설",list:[
+   "점주는 시간 절감보다 폐기·결품 손실 감소에 더 크게 반응한다",
+   "신규 점주일수록 추천 수용도가 높다",
+   "점주가 추천을 거부하는 주된 이유는 정확도가 아니라 근거 부족이다"]}
+ ],
+ key:"발주는 점주의 가장 반복적이고 숙련 의존적인 업무입니다. 자동화의 1차 고객 가치는 ‘시간’이 아니라 ‘성과 평준화’에 있을 가능성이 큽니다."},
+
+{id:"m2",layer:"market",col:2,t:"폐기·결품 손실",s:"점포 수익성",
+ sum:"신선식품 비중이 커질수록 과잉 발주는 폐기로, 과소 발주는 결품으로 수익이 새어 나갑니다. 두 손실은 서로 반대 방향으로 움직입니다.",
+ sec:[
+  {h:"손실 구조",t:["원인","결과","부담 주체"],r:[
+   ["과잉 발주","유통기한 경과 폐기","점주 (본부 폐기 지원 정책에 따라 분담)"],
+   ["과소 발주","품절에 따른 판매 기회 손실","점주·본부 모두, 고객 이탈로 장기화"],
+   ["진열 공백","매대가 비어 보여 구매 감소","점주"]]},
+  {h:"목표 지표 설계",formula:"총손실 = 폐기 원가 + 결품 기회손실<small>폐기율만 낮추면 결품이 늘고, 결품만 줄이면 폐기가 늘어납니다. 단일 지표가 아닌 총손실 최소화를 목표로 둡니다.</small>"},
+  {h:"측정 방법",t:["지표","산식","비고"],r:[
+   ["폐기율","폐기 수량 ÷ 입고 수량","폐기 등록 누락 보정 필요"],
+   ["결품률","품절 시간 ÷ 영업 시간","POS 판매 공백으로 추정"],
+   ["기회손실","결품 시간 × 추정 시간당 수요","수요예측 모델과 연계"]]}
+ ],
+ key:"‘폐기를 줄이자’가 아니라 ‘총손실을 줄이자’로 문제를 정의해야 점주와 본부가 같은 숫자를 봅니다."},
+
+{id:"m3",layer:"market",col:3,t:"무인 점포 확산",s:"하이브리드 운영",
+ sum:"야간 무인, 주간 유인 같은 하이브리드 점포가 늘어나면 사람이 발주할 시간 자체가 줄어듭니다. 이때 자율 발주는 선택이 아닌 운영의 전제 조건이 됩니다.",
+ sec:[
+  {h:"변화 동인",t:["동인","내용"],r:[
+   ["인력","심야 인력 확보 어려움, 인건비 부담"],
+   ["기술","무인 결제, 출입 인증, 원격 관제의 보편화"],
+   ["고객","비대면 구매에 대한 거부감 감소"]]},
+  {h:"운영 요구사항",list:[
+   "현장 인력 없이도 발주·진열 상태를 원격으로 파악",
+   "이상 상황(급격한 판매 변화, 재고 불일치)의 자동 탐지와 알림",
+   "점주 1명이 여러 점포를 관리할 수 있는 다점포 운영 화면"]},
+  {h:"로드맵 시사점",list:[
+   "3단계 자율 운영은 무인 점포 확산 속도에 맞춰 시점을 조정",
+   "무인 전환 점포를 자율 운영 파일럿의 1순위 대상으로 선정"]}
+ ],
+ key:"무인 점포가 늘수록 자율 발주의 가치는 ‘편의’에서 ‘필수’로 바뀝니다. 시장 변화 속도가 3단계 일정의 기준점입니다."},
+
+/* ---------------- PRODUCT ---------------- */
+{id:"p1",layer:"product",col:1,t:"발주 추천",s:"점주 승인형",
+ sum:"AI가 점포·상품별 발주량을 추천하고, 점주가 검토 후 승인합니다. 최종 결정권은 점주에게 남겨 두고, 판매가 안정적인 상온·가공식품부터 시작합니다.",
+ sec:[
+  {h:"범위",t:["항목","내용"],r:[
+   ["대상","상온·가공식품, 음료, 생활용품 (판매 패턴이 안정적인 카테고리)"],
+   ["제외","도시락·삼각김밥 등 신선식품은 참고값만 제공, 2단계에서 본격 적용"],
+   ["기간","파일럿 3~6개월 후 확산"]]},
+  {h:"업무 흐름",t:["단계","시점","처리 내용"],r:[
+   ["① 데이터 수집","매일 마감 후","POS 판매, 재고, 입고, 폐기 적재"],
+   ["② 수요 예측","새벽 배치","점포 × SKU별 다음 발주주기 수요 예측"],
+   ["③ 수량 산출","발주 마감 3~4시간 전","예측값을 발주 수량으로 변환"],
+   ["④ 점주 검토","발주 마감 전","일괄 승인, 또는 예외 품목만 수정"],
+   ["⑤ 발주 전송","마감 시각","본부 발주 시스템으로 확정 전송"],
+   ["⑥ 피드백 학습","상시","점주 수정 이력과 실제 판매로 재학습"]]},
+  {h:"추천 수량 로직",formula:"추천량 = 예측 수요(리드타임 + 발주주기) + 안전재고 − 현재고 − 입고예정<small>발주 단위(입수) 올림, 매대 최대치 상한, 최소 진열량 보장, 본부 행사 가산을 차례로 적용합니다.</small>"},
+  {h:"점주 화면 원칙",t:["원칙","구현"],r:[
+   ["예외만 보여주기","평소와 크게 다른 추천만 강조, 나머지는 일괄 승인"],
+   ["근거 표시","“내일 비 예보로 우산 +15”처럼 한 줄 이유"],
+   ["신뢰도 표시","예측이 불확실한 품목은 별도 표시해 검토 유도"],
+   ["수정 사유 수집","“근처 행사”, “재고 오류” 등 선택지로 받아 학습에 활용"],
+   ["모바일 우선","매장 안에서 휴대폰으로 처리"]]},
+  {h:"KPI와 2단계 전환 기준 (예시)",t:["KPI","측정","전환 기준"],r:[
+   ["추천 채택률","수정 없이 승인된 품목 비율","80% 이상"],
+   ["평균 수정폭","추천량 대비 점주 수정량","10% 이내"],
+   ["결품률","파일럿 vs 대조군","대조군보다 개선"],
+   ["폐기율","파일럿 vs 대조군","대조군보다 악화되지 않음"],
+   ["발주 소요시간","점주 일일 발주 작업 시간","50% 이상 단축"]]},
+  {h:"리스크와 대응",t:["리스크","대응"],r:[
+   ["재고 데이터 부정확","최대 리스크. 재고 실사 보정 기능, 오차 큰 점포 우선 정비"],
+   ["점주 불신","근거 표시, 초기 보수적 추천, 성과 리포트 공유"],
+   ["본부 밀어내기 의심","행사 가산분을 분리 표시, 점주 이익 기준 로직 명시"],
+   ["배치 실패","베이스라인 추천으로 자동 대체"]]}
+ ],
+ key:"1단계의 진짜 목표는 정확한 예측보다 재고 데이터 정합성 확보와 점주 신뢰 축적입니다. 이 두 가지가 자동 발주의 선행조건입니다."},
+
+{id:"p2",layer:"product",col:2,t:"자동 발주",s:"신선식품 확대",
+ sum:"1단계 기준을 통과한 카테고리부터 승인 없이 자동 발주하고, 점주는 예외만 처리합니다. 신선식품은 하루 여러 번 오는 배송 회차에 맞춘 단기 예측으로 확장합니다.",
+ sec:[
+  {h:"자동화 범위 정책",t:["카테고리","자동화 조건","점주 개입"],r:[
+   ["상온·음료","1단계 전환 기준 충족","예외 알림만 확인"],
+   ["신선식품","회차별 예측 정확도 검증","확정 전 일정 시간 수정 가능"],
+   ["신상품·행사","판매 이력 부족","승인형 유지"]]},
+  {h:"가드레일",list:[
+   "평소 대비 발주량이 급변하면 자동 확정을 보류하고 점주 승인으로 전환",
+   "점포별·카테고리별 자동 발주 끄기(opt-out) 제공",
+   "이상 탐지 시 해당 점포를 추천 모드로 자동 복귀",
+   "모든 자동 발주에 근거와 로그를 남겨 사후 설명 가능하게"]},
+  {h:"KPI",t:["지표","의미"],r:[
+   ["자동 발주 비중","전체 발주 SKU 중 자동 확정 비율"],
+   ["점주 개입률","자동 발주 후 점주가 수정한 비율"],
+   ["총손실","폐기 원가 + 결품 기회손실"]]},
+  {h:"리스크와 대응",t:["리스크","대응"],r:[
+   ["책임 소재","자동 발주로 생긴 폐기의 부담 주체를 가맹 계약·보상 정책에 명시"],
+   ["신선식품 예측 오차","보수적 분위수로 시작해 단계적으로 상향"],
+   ["점주 소외감","주간 성과 리포트로 ‘감독자’ 역할 부여"]]}
+ ],
+ key:"자동화의 핵심 장벽은 기술보다 책임 소재입니다. 가맹 정책 정비를 기술 개발과 동시에 시작해야 합니다."},
+
+{id:"p3",layer:"product",col:3,t:"자율 운영",s:"발주·진열·가격",
+ sum:"발주를 넘어 진열 배치와 유통기한 임박 상품의 할인 가격까지 하나의 시스템이 함께 최적화합니다. 점주는 운영자에서 감독자로 역할이 바뀝니다.",
+ sec:[
+  {h:"의사결정 통합",t:["영역","질문","방식"],r:[
+   ["발주","얼마나 들일까","확률적 수요예측 + 최적화"],
+   ["진열","어디에 얼마나 둘까","매대 공간 대비 매출 최적화"],
+   ["가격","임박 상품을 언제 얼마나 할인할까","다이나믹 프라이싱, 전자 가격표 연동"]]},
+  {h:"사람의 역할 변화",t:["단계","점주 역할"],r:[
+   ["1단계","결정자: 추천을 보고 직접 승인"],
+   ["2단계","관리자: 예외만 처리"],
+   ["3단계","감독자: 목표와 제약만 설정, 결과 모니터링"]]},
+  {h:"선행조건",list:[
+   "2단계 KPI가 여러 분기 안정적으로 유지",
+   "전자 가격표(ESL) 도입으로 가격 변경 자동화",
+   "비전AI·센서 기반 실시간 재고 인식",
+   "할인 정책에 대한 본부·점주 간 합의"]}
+ ],
+ key:"발주·진열·가격은 서로 영향을 주는 하나의 문제입니다. 따로 최적화하면 서로의 효과를 깎아 먹습니다."},
+
+/* ---------------- TECH ---------------- */
+{id:"t1",layer:"tech",col:1,slot:0,t:"데이터 통합",s:"POS·재고 정합성",
+ sum:"모든 예측의 출발점입니다. 판매, 입고, 폐기, 재고 데이터를 한곳에 모으고, 시스템상 재고와 실제 재고의 차이를 줄이는 것이 1순위 과제입니다.",
+ sec:[
+  {h:"데이터 소스",t:["소스","주기","주의점"],r:[
+   ["POS 판매","실시간 / 일 마감","반품·취소 처리 반영"],
+   ["입고","배송 회차별","검수 누락, 오입고"],
+   ["폐기 등록","수시","점주 입력 누락이 잦음"],
+   ["재고 실사","정기","실사 주기가 점포마다 다름"],
+   ["행사 마스터","행사 단위","본부 시스템과 동기화"],
+   ["날씨·달력","일 단위","외부 API, 지역 단위 매핑"]]},
+  {h:"재고 정합성 확보",list:[
+   "시스템 재고(이론값)와 실사 재고의 차이를 점포별로 모니터링",
+   "차이가 큰 점포·카테고리에 실사 요청 자동 발송",
+   "바코드 스캔 한 번으로 폐기 등록이 끝나도록 입력 간소화"]},
+  {h:"데이터 아키텍처",t:["계층","역할"],r:[
+   ["수집","이벤트 스트림으로 POS·입고·폐기 적재"],
+   ["저장","데이터 레이크에 원천 보관"],
+   ["피처 스토어","점포 × SKU × 일 단위 학습용 데이터"],
+   ["서빙","발주 마감 전 추천 결과 제공 API"]]}
+ ],
+ key:"재고가 틀리면 예측이 맞아도 발주는 틀립니다. 모델 고도화보다 이 과제에 먼저 투자해야 합니다."},
+
+{id:"t2",layer:"tech",col:1,slot:1,t:"수요예측 ML",s:"시계열·날씨",
+ sum:"점포 × SKU별 수요를 예측합니다. 정확도 자체보다 발주 결과(총손실)를 기준으로 평가하고, 불확실성까지 함께 예측해 안전재고를 정합니다.",
+ sec:[
+  {h:"모델 구성",t:["단계","모델","용도"],r:[
+   ["베이스라인","요일별 이동평균","비교 기준, 장애 시 대체값"],
+   ["주력","전 점포 통합 GBM (LightGBM 계열)","대부분의 SKU 예측"],
+   ["확장 검토","딥러닝 시계열 모델","행사·계절 효과가 큰 SKU"],
+   ["저회전 상품","간헐수요 모델","가끔 팔리는 롱테일 SKU"]]},
+  {h:"주요 피처",t:["유형","예시"],r:[
+   ["판매 이력","최근 판매량, 같은 요일 판매량"],
+   ["달력","요일, 공휴일, 월초·월말, 급여일"],
+   ["외부","기온, 강수, 지역 행사"],
+   ["점포","상권 유형, 규모, 주변 시설"],
+   ["상품","가격, 행사 여부, 카테고리"]]},
+  {h:"꼭 풀어야 할 문제",list:[
+   "품절된 날의 판매량은 실제 수요보다 적다: 결품 구간 수요 보정",
+   "신규 점포·신상품은 이력이 없다: 유사 점포·유사 상품으로 초기값 설정",
+   "평균만 맞히면 부족하다: 분위수 예측으로 안전재고 산출"]}
+ ],
+ key:"MAPE 같은 예측 정확도가 아니라 ‘그 예측으로 발주했을 때 총손실’로 모델을 고르세요."},
+
+{id:"t3",layer:"tech",col:2,slot:0,t:"단기 예측",s:"유통기한 최적화",
+ sum:"도시락처럼 유통기한이 하루 안팎인 신선식품은 배송 회차 단위로 예측하고, 남으면 버리고 모자라면 못 파는 구조를 수식으로 최적화합니다.",
+ sec:[
+  {h:"최적 발주량 원리 (뉴스벤더 모델)",formula:"최적 발주량 = 수요 분포의 q 분위수,  q = 마진 ÷ (마진 + 폐기 원가)<small>마진이 크고 폐기 원가가 작을수록 넉넉하게, 반대면 보수적으로 발주합니다.</small>"},
+  {h:"회차별 예측",t:["항목","내용"],r:[
+   ["단위","배송 회차 × 시간대별 수요"],
+   ["입력","직전 회차 판매 속도, 현재 잔량, 날씨, 시간대"],
+   ["출력","다음 회차 발주량과 예상 잔량"]]},
+  {h:"마감 할인 연동",list:[
+   "예상 잔량이 크면 임박 시점 할인을 미리 계획",
+   "할인 효과를 반영해 발주량을 다시 계산",
+   "3단계 다이나믹 프라이싱의 데이터 기반이 됨"]}
+ ],
+ key:"신선식품은 ‘정확히 맞히기’가 아니라 ‘남거나 모자랄 때의 비용 차이’로 발주량이 결정됩니다."},
+
+{id:"t4",layer:"tech",col:2,slot:1,t:"비전AI·IoT",s:"진열 재고 인식",
+ sum:"카메라와 센서로 매대 위 실제 재고를 읽어, 데이터 통합 단계의 재고 오차 문제를 근본적으로 해결합니다.",
+ sec:[
+  {h:"기술 옵션 비교",t:["방식","장점","한계"],r:[
+   ["매대 카메라","진열 공백·오진열 감지","설치비, 고객 촬영 이슈"],
+   ["무게 센서","정확한 수량 측정","매대 교체 필요"],
+   ["전자 가격표(ESL)","가격 변경 자동화","초기 투자비"],
+   ["직원 스마트폰 촬영","저비용, 빠른 도입","실시간성 낮음"]]},
+  {h:"도입 전략",list:[
+   "매출 상위 점포, 무인 전환 점포부터 우선 도입",
+   "저비용 스마트폰 촬영으로 시작해 효과 검증 후 고정 장비 확대",
+   "고객 얼굴·신체는 저장 전 자동 마스킹"]},
+  {h:"기대 효과",t:["영역","효과"],r:[
+   ["재고 정합성","실사 없이 실시간 보정"],
+   ["결품 대응","매대 공백 즉시 알림"],
+   ["자율 운영","진열·가격 자동화의 기반"]]}
+ ],
+ key:"비전AI의 첫 가치는 ‘멋진 무인화’가 아니라 ‘재고 숫자를 믿을 수 있게 만드는 것’입니다."},
+
+{id:"t5",layer:"tech",col:3,slot:0,t:"에이전트 AI",s:"자율 의사결정",
+ sum:"예측 모델과 최적화 엔진 위에 AI 에이전트를 얹어, 숫자로 표현되지 않는 상황까지 판단하고 점주에게 자연어로 설명합니다.",
+ sec:[
+  {h:"역할 분담",t:["구성요소","담당"],r:[
+   ["수요예측 모델","정량적 수요 예측"],
+   ["최적화 엔진","발주·진열·가격의 수리 최적화"],
+   ["LLM 에이전트","근처 축제·공사·뉴스 같은 비정형 정보 해석과 보정"],
+   ["설명 계층","점주에게 결정 근거를 자연어로 전달, 질문에 답변"]]},
+  {h:"안전장치",list:[
+   "모든 결정을 로그로 남기고 근거를 함께 저장",
+   "영향이 큰 결정은 사람 승인 임계치를 넘으면 보류",
+   "문제 발생 시 이전 정책으로 즉시 롤백",
+   "에이전트의 보정 폭에 상한을 둠"]},
+  {h:"단계적 적용",t:["단계","에이전트 역할"],r:[
+   ["초기","추천 근거 설명, 점주 질문 응답"],
+   ["중기","외부 이벤트 탐지와 발주 보정 제안"],
+   ["후기","목표·제약 안에서 자율 실행"]]}
+ ],
+ key:"LLM은 수량을 직접 계산하는 대신, 숫자 모델이 놓치는 맥락을 보정하고 설명하는 역할에 둘 때 가장 안전합니다."},
+
+{id:"t6",layer:"tech",col:3,slot:1,t:"공급망 연계",s:"본부·물류 최적화",
+ sum:"점포 발주의 합은 곧 물류센터의 수요입니다. 점포 단위 예측을 본부·물류·공급사까지 연결해 공급망 전체의 낭비를 줄입니다.",
+ sec:[
+  {h:"연계 범위",t:["대상","연계 내용"],r:[
+   ["물류센터","점포 예측 합산으로 센터 재고 계획"],
+   ["배송","회차·차량 적재·경로 최적화"],
+   ["공급사","예측 공유, 공급사 관리 재고(VMI)"]]},
+  {h:"기대 효과",list:[
+   "점포 → 센터 → 공급사로 갈수록 수요 변동이 커지는 채찍효과 완화",
+   "센터 재고와 배송비 동시 절감",
+   "행사 상품의 사전 물량 확보 정확도 향상"]},
+  {h:"고려사항",list:[
+   "공급사와의 데이터 공유 범위와 계약 조건",
+   "점포 최적과 공급망 최적이 충돌할 때의 우선순위 규칙"]}
+ ],
+ key:"점포 하나의 최적화가 끝나면, 다음 가치는 공급망 전체에서 나옵니다."},
+
+/* ---------------- RESOURCE ---------------- */
+{id:"r1",layer:"resource",col:1,t:"데이터·ML팀",s:"파일럿 점포",
+ sum:"작은 전담 조직과 대표성 있는 파일럿 점포로 시작합니다. 기술팀만이 아니라 점포를 아는 영업관리 인력이 반드시 함께해야 합니다.",
+ sec:[
+  {h:"전담 조직 구성",t:["역할","담당"],r:[
+   ["데이터 엔지니어","수집 파이프라인, 재고 정합성 모니터링"],
+   ["ML 엔지니어","수요예측, 수량 산출 로직"],
+   ["프로덕트 매니저","점주 화면, 업무 흐름 설계"],
+   ["영업관리 담당","점포 선정, 점주 소통, 현장 피드백"]]},
+  {h:"파일럿 설계",list:[
+   "상권 유형(오피스·주거·학교·관광)별 대표 점포 선정",
+   "조건이 비슷한 대조군 점포를 함께 지정해 A/B 비교",
+   "재고 정합성이 양호한 점포를 우선 포함"]}
+ ],
+ key:"파일럿 성공의 절반은 점포 선정과 점주 소통에서 결정됩니다."},
+
+{id:"r2",layer:"resource",col:2,t:"센서 투자",s:"점주 교육",
+ sum:"자동 발주 확대 시기에는 하드웨어 투자와 점주 변화관리가 함께 필요합니다. 투자는 효과가 검증된 점포부터 단계적으로 집행합니다.",
+ sec:[
+  {h:"투자 우선순위",t:["우선순위","대상","근거"],r:[
+   ["1","무인·하이브리드 점포","사람 대신 재고를 볼 수단 필요"],
+   ["2","매출 상위 점포","손실 절감 금액이 큼"],
+   ["3","재고 오차가 큰 점포","정합성 개선 효과가 큼"]]},
+  {h:"점주 변화관리",list:[
+   "자동 발주 정책과 예외 처리 방법 교육",
+   "주간 성과 리포트로 절감 효과를 숫자로 공유",
+   "우수 점주 사례를 다른 점주에게 전파"]}
+ ],
+ key:"점주가 효과를 체감하지 못하면 자동 발주는 꺼집니다. 교육보다 성과 공유가 더 강력한 변화관리 수단입니다."},
+
+{id:"r3",layer:"resource",col:3,t:"물류 파트너",s:"전 점포 확산",
+ sum:"전 점포로 확산하고, 물류·공급사 파트너와 데이터를 연결해 공급망 전체 최적화로 넓힙니다.",
+ sec:[
+  {h:"확산 단계",t:["웨이브","대상","목표"],r:[
+   ["1","직영점","운영 안정성 검증"],
+   ["2","성과 우수 가맹점","가맹 환경에서의 효과 입증"],
+   ["3","전체 가맹점","표준 운영 방식으로 정착"]]},
+  {h:"운영 체계",list:[
+   "모델 성능을 점포별로 자동 감시하는 MLOps 체계",
+   "점포별 이상 징후 대시보드와 대응 조직",
+   "물류·공급사와의 데이터 공유 협약"]}
+ ],
+ key:"확산 단계의 리스크는 모델이 아니라 운영입니다. 수천 개 점포를 감시할 체계가 먼저 갖춰져야 합니다."},
+
+/* ---------------- VISION ---------------- */
+{id:"v",layer:"vision",col:4,t:"무인 자율 운영 점포",s:"로드맵의 도착점",
+ sum:"발주, 진열, 가격 결정이 시스템 안에서 자율적으로 이뤄지고, 사람은 목표 설정과 예외 대응만 맡는 점포입니다.",
+ sec:[
+  {h:"목표 상태",t:["영역","현재","목표"],r:[
+   ["발주","점주가 매일 수동 결정","시스템 자율 결정, 예외만 개입"],
+   ["진열","점주 경험 기반","매대 데이터 기반 최적 배치"],
+   ["가격","본부 일괄 정책","유통기한·재고 기반 동적 할인"],
+   ["재고 파악","정기 실사","센서 기반 실시간 파악"]]},
+  {h:"최종 KPI",t:["지표","방향"],r:[
+   ["결품률","최소화"],
+   ["폐기율","최소화"],
+   ["발주 소요시간","제로에 가깝게"],
+   ["점주 1인당 관리 점포 수","확대"]]},
+  {h:"단계별 진화",t:["단계","핵심 변화"],r:[
+   ["1. 발주 추천","데이터 정합성과 점주 신뢰 확보"],
+   ["2. 자동 발주","예외 기반 운영, 신선식품 확대"],
+   ["3. 자율 운영","발주·진열·가격 통합 최적화"]]}
+ ],
+ key:"이 로드맵은 기술을 한 번에 도입하는 계획이 아니라, 점주의 결정권을 신뢰가 쌓이는 만큼씩 시스템으로 옮기는 계획입니다."}
+];
+
+const ORDER = ["m1","m2","m3","p1","p2","p3","t1","t2","t3","t4","t5","t6","r1","r2","r3","v"];
+const byId = Object.fromEntries(N.map(n=>[n.id,n]));
+const ROW = {market:2,product:3,tech:4,resource:6};
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- grid ---------- */
+const rm = document.getElementById("rm");
+function buildGrid(){
+  let h = "";
+  PERIODS.forEach((p,i)=>{ if(i) h += `<div class="time" data-col="${i}" style="grid-column:${i+1}">${p}</div>`; });
+  h += `<div class="time" style="grid-column:5">비전<small>도착점</small></div><div class="axis" aria-hidden="true"></div>`;
+  ["market","product","tech","resource"].forEach(L=>{
+    const lay = LAYERS[L], r = ROW[L], span = L==="tech" ? `${r} / ${r+2}` : r;
+    h += `<div class="lbl" style="--c:${lay.c};grid-row:${span}"><b>${lay.name}</b><span>${lay.en}</span></div>`;
+    N.filter(n=>n.layer===L).forEach(n=>{
+      const row = L==="tech" ? r + n.slot : r;
+      h += `<button class="card" data-id="${n.id}" data-col="${n.col}" style="--c:${lay.c};grid-column:${n.col+1};grid-row:${row}"
+        aria-label="${esc(n.t)} 상세 보기">
+        <span class="pt">${PERIODS[n.col]}</span>
+        <span class="t">${esc(n.t)}</span><span class="s">${esc(n.s)}</span><span class="go" aria-hidden="true">상세 보기</span></button>`;
+    });
+  });
+  h += `<button class="vision" data-id="v" aria-label="비전 상세 보기">
+    <span class="ring" aria-hidden="true"></span><span class="ring r2" aria-hidden="true"></span>
+    <p class="vt">무인 자율<br>운영 점포</p>
+    <ul><li>결품률 최소화</li><li>폐기율 최소화</li><li>발주 시간 제로</li></ul>
+    <span class="go">비전 자세히 보기</span></button>`;
+  rm.innerHTML = h;
+
+  rm.addEventListener("click", e=>{
+    const b = e.target.closest("[data-id]"); if(!b || !b.matches("button")) return;
+    open(b.dataset.id, b);
+  });
+  rm.addEventListener("mouseover", e=>{
+    const b = e.target.closest(".card,.vision");
+    rm.querySelectorAll(".rel").forEach(x=>x.classList.remove("rel"));
+    rm.querySelectorAll(".time.hl").forEach(x=>x.classList.remove("hl"));
+    if(!b){ rm.classList.remove("hovering"); return; }
+    rm.classList.add("hovering");
+    const col = b.dataset.col;
+    if(col){
+      rm.querySelectorAll(`.card[data-col="${col}"]`).forEach(x=>x.classList.add("rel"));
+      const t = rm.querySelector(`.time[data-col="${col}"]`); if(t) t.classList.add("hl");
+    }
+  });
+  rm.addEventListener("mouseleave", ()=>{
+    rm.classList.remove("hovering");
+    rm.querySelectorAll(".rel,.time.hl").forEach(x=>x.classList.remove("rel","hl"));
+  });
+}
+
+/* ---------- detail ---------- */
+const gridView = document.getElementById("grid-view");
+const detailView = document.getElementById("detail-view");
+
+function section(s,i){
+  let body = "";
+  if(s.t) body = `<div class="tbl"><table><thead><tr>${s.t.map(x=>`<th scope="col">${esc(x)}</th>`).join("")}</tr></thead>
+    <tbody>${s.r.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  else if(s.list) body = `<ul class="list">${s.list.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+  else if(s.formula) body = `<div class="formula">${s.formula}</div>`;
+  return `<section class="sec" style="animation-delay:${80+i*60}ms"><h3>${esc(s.h)}</h3>${body}</section>`;
+}
+function mini(cur){
+  let h = `<div class="mg">`;
+  const rows = [["market"],["product"],["tech",0],["tech",1],["resource"]];
+  rows.forEach((rw,ri)=>{
+    for(let c=1;c<=3;c++){
+      const n = N.find(x=>x.layer===rw[0] && x.col===c && (rw[1]===undefined || x.slot===rw[1]));
+      h += `<button class="mc${n.id===cur?" on":""}" style="--c:${LAYERS[n.layer].c};grid-column:${c};grid-row:${ri+1}" data-id="${n.id}"
+        ${n.id===cur?'aria-current="page"':""}>${esc(n.t)}</button>`;
+    }
+  });
+  h += `<button class="mv${cur==="v"?" on":""}" data-id="v" style="grid-row:1 / 6" ${cur==="v"?'aria-current="page"':""}>비전</button></div>`;
+  return h;
+}
+function renderDetail(id){
+  const n = byId[id], L = LAYERS[n.layer], i = ORDER.indexOf(id);
+  const prev = byId[ORDER[i-1]], next = byId[ORDER[i+1]];
+  const period = n.layer==="vision" ? "도착점" : PERIODS[n.col];
+  detailView.style.setProperty("--c", L.c);
+  detailView.innerHTML = `
+    <div class="bar">
+      <button class="back" id="back"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>로드맵</button>
+      <span class="crumb">${L.name} (${L.en}) / ${period}</span>
+    </div>
+    <div class="detail">
+      <article>
+        <header class="hero${n.layer==="vision"?" is-vision":""}">
+          <span class="chip">${L.name} · ${period}</span>
+          <h2 tabindex="-1" id="dt">${esc(n.t)}</h2>
+          <p class="sub">${esc(n.s)}</p>
+          <p class="summary">${esc(n.sum)}</p>
+        </header>
+        ${n.sec.map(section).join("")}
+        <div class="key sec" style="animation-delay:${80+n.sec.length*60}ms"><b>핵심 메시지</b>${esc(n.key)}</div>
+        <nav class="pager" aria-label="단계 이동">
+          <button class="pg" data-id="${prev?prev.id:""}" ${prev?"":"disabled"}><small>이전</small><span>${prev?esc(prev.t):""}</span></button>
+          <button class="pg next" data-id="${next?next.id:""}" ${next?"":"disabled"}><small>다음</small><span>${next?esc(next.t):""}</span></button>
+        </nav>
+      </article>
+      <aside class="mini" aria-label="로드맵 미니맵">
+        <h4>로드맵에서 위치</h4>${mini(id)}
+        <p class="tip">다른 칸을 누르면 바로 이동합니다.</p>
+      </aside>
+    </div>`;
+  detailView.querySelector("#back").onclick = ()=>go("");
+  detailView.querySelectorAll(".pg[data-id]:not([disabled]),.mc,.mv").forEach(b=>b.onclick=()=>go(b.dataset.id));
+}
+
+/* ---------- routing with transitions ---------- */
+let current = "";
+const canVT = typeof document.startViewTransition === "function" &&
+  !matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function open(id, srcEl){ go(id, srcEl); }
+function go(id, srcEl){
+  const target = id ? "#/" + id : "#/";
+  if(location.hash === target){ route(srcEl); return; }
+  pendingSrc = srcEl || null;
+  location.hash = target;
+}
+let pendingSrc = null;
+let gridScroll = 0;
+
+function swap(next){
+  const fromGrid = !current, toGrid = !next;
+  if(fromGrid && !toGrid) gridScroll = scrollY;
+  if(toGrid){
+    detailView.hidden = true; gridView.hidden = false;
+  } else {
+    renderDetail(next); gridView.hidden = true; detailView.hidden = false;
+  }
+  current = next;
+}
+function afterSwap(next){
+  if(next){
+    window.scrollTo({top:0});
+    const h = document.getElementById("dt"); if(h) h.focus({preventScroll:true});
+  } else {
+    window.scrollTo({top:gridScroll});
+    const b = rm.querySelector(`[data-id="${lastId}"]`); if(b) b.focus({preventScroll:true});
+  }
+}
+let lastId = "";
+function route(){
+  const m = location.hash.match(/^#\/(\w+)$/);
+  const next = m && byId[m[1]] ? m[1] : "";
+  if(next === current){ return; }
+  const fromGrid = !current, toGrid = !next;
+  const src = pendingSrc || (fromGrid && next ? rm.querySelector(`[data-id="${next}"]`) : null);
+  pendingSrc = null;
+  if(next) lastId = next;
+
+  if(canVT){
+    if(fromGrid && src) src.style.viewTransitionName = "hero";
+    const t = document.startViewTransition(()=>{
+      if(src) src.style.viewTransitionName = "";
+      swap(next);
+      if(toGrid){
+        const back = rm.querySelector(`[data-id="${lastId}"]`);
+        if(back) back.style.viewTransitionName = "hero";
+      }
+      afterSwap(next);
+    });
+    t.finished.finally(()=>rm.querySelectorAll("[data-id]").forEach(b=>b.style.viewTransitionName=""));
+  } else {
+    swap(next);
+    const v = next ? detailView : gridView;
+    v.classList.remove("fade-in"); void v.offsetWidth; v.classList.add("fade-in");
+    afterSwap(next);
+  }
+}
+window.addEventListener("hashchange", ()=>route());
+document.addEventListener("keydown", e=>{
+  if(!current) return;
+  if(e.target.matches("input,textarea")) return;
+  const i = ORDER.indexOf(current);
+  if(e.key==="Escape") go("");
+  else if(e.key==="ArrowRight" && ORDER[i+1]) go(ORDER[i+1]);
+  else if(e.key==="ArrowLeft" && ORDER[i-1]) go(ORDER[i-1]);
+});
+
+buildGrid();
+route();
+</script>
+</body>
+</html>
