@@ -4,185 +4,239 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>리버스카이 | CTO · Engineering Leader</title>
-<meta name="description" content="이커머스 플랫폼 개발조직을 이끄는 엔지니어링 리더, 리버스카이의 경력과 업무 소개">
+<meta name="description" content="검색엔진 개발자에서 이커머스 플랫폼 CTO까지, 리버스카이의 경력과 업무 소개">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F3F6F8; --surface:#FFFFFF; --soft:#E8EEF3;
-  --ink:#0F1D2B; --ink-2:#44546A; --ink-3:#7D8B9C; --line:#D7DFE7;
-  --river:#2448C9; --river-2:#5C7BEA; --water:#0F8C8A;
+  --bg:#F4F6FA; --surface:#FFFFFF; --soft:#EBEFF6;
+  --ink:#0C1324; --ink-2:#3C4A61; --ink-3:#6B788D; --line:#DCE2EC;
+  --cobalt:#3355FF; --violet:#8A3FFC; --cyan:#00B4CC; --coral:#FF5C7A;
+  --grad:linear-gradient(100deg,#3355FF 0%,#8A3FFC 52%,#00B4CC 100%);
+  --night:#0A1022; --night-2:#121A33;
   --display:"Hahmlet","Noto Serif KR",Georgia,serif;
   --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0C141D; --surface:#121C27; --soft:#18242F;
-    --ink:#E5ECF3; --ink-2:#A7B4C3; --ink-3:#6E7D8E; --line:#24313F;
-    --river:#7E9BFF; --river-2:#5C7BEA; --water:#45C7C1; color-scheme:dark;
+    --bg:#0B1121; --surface:#111A2E; --soft:#18233B;
+    --ink:#EAF0FA; --ink-2:#B3C0D6; --ink-3:#7F8DA6; --line:#22304A;
+    --cobalt:#6E87FF; --violet:#A877FF; --cyan:#3AD3E3; --coral:#FF7E96;
+    --grad:linear-gradient(100deg,#6E87FF 0%,#A877FF 52%,#3AD3E3 100%);
+    --night:#060B18; --night-2:#0D1530; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0C141D; --surface:#121C27; --soft:#18242F;
-  --ink:#E5ECF3; --ink-2:#A7B4C3; --ink-3:#6E7D8E; --line:#24313F;
-  --river:#7E9BFF; --river-2:#5C7BEA; --water:#45C7C1; color-scheme:dark;
+  --bg:#0B1121; --surface:#111A2E; --soft:#18233B;
+  --ink:#EAF0FA; --ink-2:#B3C0D6; --ink-3:#7F8DA6; --line:#22304A;
+  --cobalt:#6E87FF; --violet:#A877FF; --cyan:#3AD3E3; --coral:#FF7E96;
+  --grad:linear-gradient(100deg,#6E87FF 0%,#A877FF 52%,#3AD3E3 100%);
+  --night:#060B18; --night-2:#0D1530; color-scheme:dark;
 }
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-behavior:smooth;scroll-padding-top:calc(24px + env(safe-area-inset-top,0px))}
+:root{box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(84px + env(safe-area-inset-top,0px))}
 *,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased}
-a{color:var(--river)}
-:focus-visible{outline:2px solid var(--river);outline-offset:3px;border-radius:6px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.75;word-break:keep-all;-webkit-font-smoothing:antialiased}
+a{color:var(--cobalt)}
+:focus-visible{outline:2.5px solid var(--cobalt);outline-offset:3px;border-radius:6px}
 button{font:inherit;color:inherit}
+.g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.container{max-width:1160px;margin:0 auto;padding:0 32px}
 
-.page{max-width:1120px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:64px}
-
-/* side nav */
-nav.side{position:sticky;top:calc(48px + env(safe-area-inset-top,0px));align-self:start;padding-top:56px}
-.side .mark{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em;margin-bottom:28px;display:block;color:var(--ink);text-decoration:none}
-.side ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
-.side a{display:block;padding:7px 0 7px 16px;margin-left:-1px;border-left:2px solid transparent;color:var(--ink-3);text-decoration:none;font-size:14px;transition:color .2s,border-color .2s}
-.side a:hover{color:var(--ink)}
-.side a.on{color:var(--ink);border-left-color:var(--river);font-weight:500}
-
-main{padding:56px 0 96px;min-width:0}
+/* nav */
+.nav{position:fixed;left:0;right:0;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+.nav .container{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav .mark{font-family:var(--display);font-weight:800;font-size:21px;color:#fff;text-decoration:none;letter-spacing:-.02em;transition:color .3s}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.nav ul a{display:block;padding:8px 14px;border-radius:999px;font-size:15px;font-weight:500;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s,background .2s}
+.nav ul a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.nav ul a.on{color:#fff;background:rgba(255,255,255,.16)}
+.nav.solid{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav.solid .mark{color:var(--ink)}
+.nav.solid ul a{color:var(--ink-3)}
+.nav.solid ul a:hover{color:var(--ink);background:var(--soft)}
+.nav.solid ul a.on{color:#fff;background:var(--cobalt)}
 
 /* hero */
-.hero{padding-bottom:56px;border-bottom:1px solid var(--line);position:relative}
-.hero .role{font-size:15px;color:var(--ink-2);margin:0 0 14px}
-.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(52px,9vw,104px);line-height:1;letter-spacing:-.04em;margin:0}
-.hero h1 .en{display:block;font-family:var(--sans);font-weight:400;font-size:clamp(15px,1.6vw,18px);letter-spacing:0;color:var(--ink-3);margin-top:14px}
-.river{display:block;width:100%;height:56px;margin:30px 0 26px;overflow:visible}
+.hero{background:var(--night);color:#fff;position:relative;overflow:hidden;padding:calc(150px + env(safe-area-inset-top,0px)) 0 0}
+.hero::before{content:"";position:absolute;width:780px;height:780px;right:-220px;top:-300px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(138,63,252,.55),rgba(51,85,255,.25) 55%,transparent);filter:blur(10px)}
+.hero::after{content:"";position:absolute;width:560px;height:560px;left:-200px;bottom:-260px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(0,180,204,.35),transparent)}
+.hero .container{position:relative;z-index:1}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:500;color:rgba(255,255,255,.82);
+  padding:7px 16px 7px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.kicker i{width:9px;height:9px;border-radius:50%;background:#3AE3A0;box-shadow:0 0 0 4px rgba(58,227,160,.2)}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(64px,11vw,136px);line-height:.98;letter-spacing:-.045em;margin:28px 0 0}
+.hero h1 .g{background:linear-gradient(100deg,#8EA2FF 0%,#C29BFF 50%,#6FE6F2 100%);-webkit-background-clip:text;background-clip:text}
+.hero .title{font-size:clamp(22px,2.6vw,30px);font-weight:600;letter-spacing:-.015em;margin:22px 0 0}
+.hero .lead{font-size:clamp(18px,1.9vw,21px);line-height:1.75;color:rgba(255,255,255,.78);max-width:36em;margin:18px 0 0}
+.river{display:block;width:100%;height:60px;margin:52px 0 0;overflow:visible}
 .river path{fill:none;stroke-linecap:round}
-.river .a{stroke:var(--river);stroke-width:2;stroke-dasharray:900;stroke-dashoffset:900;animation:flow 1.8s cubic-bezier(.4,0,.2,1) .2s forwards}
-.river .b{stroke:var(--water);stroke-width:1.2;opacity:.6;stroke-dasharray:900;stroke-dashoffset:900;animation:flow 2.2s cubic-bezier(.4,0,.2,1) .45s forwards}
+.river .a{stroke:url(#rg);stroke-width:2.5;stroke-dasharray:1000;stroke-dashoffset:1000;animation:flow 2s cubic-bezier(.4,0,.2,1) .2s forwards}
+.river .b{stroke:rgba(111,230,242,.5);stroke-width:1.4;stroke-dasharray:1000;stroke-dashoffset:1000;animation:flow 2.4s cubic-bezier(.4,0,.2,1) .5s forwards}
 @keyframes flow{to{stroke-dashoffset:0}}
-.lead{font-size:clamp(18px,2vw,21px);line-height:1.65;max-width:34em;margin:0}
-.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin:30px 0 0;padding:0;list-style:none;font-size:14px;color:var(--ink-2)}
-.facts b{color:var(--ink);font-weight:600;margin-right:6px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.12);margin-top:8px}
+.stat{padding:30px 24px 38px 0}
+.stat+.stat{padding-left:28px;border-left:1px solid rgba(255,255,255,.12)}
+.stat b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,60px);line-height:1;letter-spacing:-.03em;
+  background:linear-gradient(100deg,#8EA2FF,#C29BFF 55%,#6FE6F2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat b small{font-size:.45em;letter-spacing:0;margin-left:2px}
+.stat span{display:block;margin-top:10px;font-size:16px;color:rgba(255,255,255,.72)}
 
 /* sections */
-section{padding:72px 0 0}
-.sh{display:flex;align-items:baseline;gap:16px;margin:0 0 28px}
-.sh h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,3vw,32px);letter-spacing:-.025em;margin:0}
-.sh p{margin:0;color:var(--ink-3);font-size:14px}
+section{padding:112px 0 0}
+.sh{margin:0 0 40px;max-width:40em}
+.sh .eyebrow{font-size:15px;font-weight:700;letter-spacing:.02em;margin:0 0 10px}
+.sh h2{font-family:var(--display);font-weight:800;font-size:clamp(34px,4.4vw,50px);line-height:1.15;letter-spacing:-.035em;margin:0}
+.sh p.d{margin:16px 0 0;font-size:18px;color:var(--ink-2)}
 
-/* current role */
-.rolebox{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:30px 32px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px}
-.rolebox h3{margin:0;font-size:22px;font-weight:600;letter-spacing:-.015em}
-.rolebox .org{margin:4px 0 16px;color:var(--ink-2);font-size:15px}
-.rolebox ul{margin:0;padding:0 0 0 18px;color:var(--ink-2)}
-.rolebox li{margin:6px 0}
-.scale{display:grid;gap:12px;align-content:start}
-.scale div{border-left:2px solid var(--river);padding:2px 0 2px 16px}
-.scale b{display:block;font-family:var(--display);font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-.02em}
-.scale span{font-size:13.5px;color:var(--ink-2)}
+/* role / scope */
+.role{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);gap:28px;align-items:stretch}
+.rcard{background:var(--night-2);color:#fff;border-radius:22px;padding:36px 34px;position:relative;overflow:hidden}
+.rcard::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--grad)}
+.rcard .co{font-size:16px;font-weight:600;color:#9FB0FF}
+.rcard h3{font-family:var(--display);font-weight:800;font-size:clamp(30px,3.4vw,40px);line-height:1.15;letter-spacing:-.03em;margin:8px 0 6px}
+.rcard .p{font-size:16px;color:rgba(255,255,255,.65);margin:0 0 22px}
+.rcard ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.rcard li{position:relative;padding-left:22px;font-size:16.5px;color:rgba(255,255,255,.88);line-height:1.6}
+.rcard li::before{content:"";position:absolute;left:0;top:.6em;width:9px;height:9px;border-radius:3px;background:var(--grad)}
+.scope{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.dom{--c:var(--cobalt);background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 22px 20px;position:relative;overflow:hidden;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s}
+.dom::after{content:"";position:absolute;inset:auto 0 0 0;height:4px;background:var(--c);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.dom:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--c) 45%,var(--line));box-shadow:0 18px 40px -26px var(--c)}
+.dom:hover::after{transform:scaleX(1)}
+.dom .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c);margin-bottom:16px}
+.dom h4{margin:0;font-size:19px;font-weight:700;letter-spacing:-.015em}
+.dom p{margin:6px 0 0;font-size:15px;color:var(--ink-2);line-height:1.6}
+.dom.new h4::after{content:"신규 추가";display:none}
+.scope-note{grid-column:1 / -1;font-size:15px;color:var(--ink-3);margin:4px 0 0}
 
-/* AX architecture */
-.ax{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:start}
-.ax p{margin:0 0 14px;color:var(--ink-2)}
-.stack{display:grid;gap:6px}
-.layer{all:unset;box-sizing:border-box;cursor:default;display:grid;grid-template-columns:28px 1fr;align-items:center;gap:12px;
-  padding:13px 16px;border-radius:10px;background:var(--surface);border:1px solid var(--line);transition:transform .25s cubic-bezier(.2,.8,.2,1),border-color .25s,background .25s}
-.layer i{font-style:normal;font-size:12px;color:var(--ink-3);font-weight:600}
-.layer b{font-weight:600;font-size:15px}
-.layer small{display:block;font-size:13px;color:var(--ink-3);max-height:0;overflow:hidden;opacity:0;transition:max-height .3s,opacity .3s,margin .3s}
-.layer:hover,.layer:focus-visible{transform:translateX(6px);border-color:var(--river)}
-.layer:hover small,.layer:focus-visible small{max-height:60px;opacity:1;margin-top:2px}
-.layer.core{background:color-mix(in srgb,var(--river) 10%,var(--surface));border-color:color-mix(in srgb,var(--river) 45%,var(--line))}
-.stack-cap{font-size:13px;color:var(--ink-3);margin-top:10px}
+/* timeline */
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:150px;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--grad)}
+.job{display:grid;grid-template-columns:130px 44px minmax(0,1fr);align-items:start;padding:0 0 28px}
+.job:last-child{padding-bottom:0}
+.when{text-align:right;padding-top:14px;font-size:15px;color:var(--ink-3);line-height:1.45}
+.when b{display:block;font-family:var(--display);font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+.dot{justify-self:center;margin-top:24px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:3px solid var(--violet);position:relative;z-index:1;transition:transform .3s,background .3s}
+.job.now .dot{background:var(--cobalt);border-color:var(--cobalt)}
+.job.now .dot::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid var(--cobalt);animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{from{transform:scale(.55);opacity:.9}to{transform:scale(1.5);opacity:0}}
+.jc{margin-left:14px;padding:24px 28px;border-radius:20px;background:var(--surface);border:1px solid var(--line);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s}
+.job:hover .jc{transform:translateX(6px);border-color:color-mix(in srgb,var(--violet) 40%,var(--line));box-shadow:0 20px 44px -30px var(--violet)}
+.job:hover .dot{transform:scale(1.25);background:var(--violet)}
+.job.now .jc{border-color:color-mix(in srgb,var(--cobalt) 45%,var(--line))}
+.jc .co{font-size:15px;font-weight:700;color:var(--violet)}
+.job.now .jc .co{color:var(--cobalt)}
+.jc h3{margin:4px 0 2px;font-size:clamp(21px,2.2vw,25px);font-weight:700;letter-spacing:-.02em;line-height:1.35}
+.jc .dur{font-size:15px;color:var(--ink-3);margin:0 0 12px}
+.jc p{margin:0;color:var(--ink-2);font-size:16.5px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding:0;list-style:none}
+.tags li{font-size:14.5px;font-weight:500;padding:6px 13px;border-radius:999px;background:color-mix(in srgb,var(--c,var(--violet)) 10%,var(--surface));color:var(--c,var(--violet));border:1px solid color-mix(in srgb,var(--c,var(--violet)) 25%,transparent)}
+.thread{margin-top:40px;padding:30px 34px;border-radius:22px;background:var(--surface);border:1px solid var(--line);position:relative;overflow:hidden}
+.thread::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:var(--grad)}
+.thread .flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;font-family:var(--display);font-weight:800;font-size:clamp(20px,2.4vw,27px);letter-spacing:-.02em}
+.thread .flow span.arrow{color:var(--ink-3);font-family:var(--sans);font-weight:400}
+.thread p{margin:14px 0 0;font-size:17px;color:var(--ink-2)}
 
-/* work items */
-.works{display:grid;gap:10px}
-.work{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .25s,box-shadow .25s}
-.work:hover{border-color:color-mix(in srgb,var(--river) 50%,var(--line))}
-.work.open{border-color:var(--river);box-shadow:0 14px 34px -24px var(--river)}
-.work button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:20px 24px}
-.work button:focus-visible{outline:2px solid var(--river);outline-offset:-2px;border-radius:14px}
-.work .tag{font-size:12.5px;color:var(--water);font-weight:600}
-.work h3{margin:2px 0 0;font-size:18px;font-weight:600;letter-spacing:-.01em}
-.work .one{margin:4px 0 0;font-size:14.5px;color:var(--ink-2)}
-.pm{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);position:relative;transition:transform .3s,background .3s,border-color .3s}
-.pm::before,.pm::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.5px;background:var(--ink-2);transform:translate(-50%,-50%);transition:transform .3s,background .3s}
+/* AX */
+.ax{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.ax .big{font-family:var(--display);font-weight:700;font-size:clamp(23px,2.5vw,29px);line-height:1.5;letter-spacing:-.02em;margin:0 0 22px}
+.ax ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.ax li{padding-left:24px;position:relative;font-size:17px;color:var(--ink-2)}
+.ax li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:10px;border-radius:50%;background:var(--grad)}
+.stack{display:grid;gap:8px;perspective:900px}
+.layer{display:grid;grid-template-columns:46px 1fr;align-items:center;gap:14px;padding:16px 20px;border-radius:14px;background:var(--surface);border:1px solid var(--line);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s,background .3s,box-shadow .3s;cursor:default}
+.layer i{font-style:normal;font-family:var(--display);font-weight:800;font-size:22px;color:var(--ink-3)}
+.layer b{font-weight:700;font-size:17.5px}
+.layer small{display:block;font-size:15px;color:var(--ink-2);max-height:0;overflow:hidden;opacity:0;transition:max-height .35s,opacity .35s,margin .35s}
+.layer:hover,.layer:focus-visible{transform:translateX(10px);border-color:var(--violet);box-shadow:0 16px 36px -26px var(--violet)}
+.layer:hover i,.layer:focus-visible i{color:var(--violet)}
+.layer:hover small,.layer:focus-visible small{max-height:64px;opacity:1;margin-top:3px}
+.layer.core{background:var(--grad);border:0;color:#fff}
+.layer.core i,.layer.core small{color:rgba(255,255,255,.85)}
+.layer.core:hover i{color:#fff}
+.cap{font-size:15px;color:var(--ink-3);margin:14px 0 0}
+
+/* works */
+.works{display:grid;gap:12px}
+.work{--c:var(--cobalt);background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.work:hover{border-color:color-mix(in srgb,var(--c) 45%,var(--line))}
+.work.open{border-color:var(--c);box-shadow:0 22px 48px -32px var(--c)}
+.work button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:6px minmax(0,1fr) auto;gap:22px;align-items:center;padding:24px 28px 24px 0}
+.work button::before{content:"";align-self:stretch;background:var(--c);border-radius:0 6px 6px 0;opacity:.85}
+.work button:focus-visible{outline:2.5px solid var(--c);outline-offset:-3px;border-radius:20px}
+.work .tag{font-size:14.5px;color:var(--c);font-weight:700}
+.work h3{margin:3px 0 0;font-size:clamp(20px,2.1vw,23px);font-weight:700;letter-spacing:-.02em;line-height:1.4}
+.work .one{margin:5px 0 0;font-size:16.5px;color:var(--ink-2)}
+.pm{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);position:relative;transition:transform .35s,background .35s,border-color .35s}
+.pm::before,.pm::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;border-radius:2px;background:var(--ink-2);transform:translate(-50%,-50%);transition:transform .35s,background .35s}
 .pm::after{transform:translate(-50%,-50%) rotate(90deg)}
-.work.open .pm{background:var(--river);border-color:var(--river);transform:rotate(180deg)}
+.work:hover .pm{border-color:var(--c)}
+.work.open .pm{background:var(--c);border-color:var(--c);transform:rotate(180deg)}
 .work.open .pm::before,.work.open .pm::after{background:#fff}
 .work.open .pm::after{transform:translate(-50%,-50%) rotate(0)}
-.body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1)}
+.body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.8,.2,1)}
 .work.open .body{grid-template-rows:1fr}
 .body>div{overflow:hidden}
-.body ul{margin:0;padding:4px 24px 22px 42px;color:var(--ink-2);font-size:15px}
-.body li{margin:7px 0}
-.body li::marker{color:var(--river)}
+.body ul{margin:0;padding:0 28px 26px 56px;color:var(--ink-2);font-size:16.5px}
+.body li{margin:8px 0}
+.body li::marker{color:var(--c)}
 
-/* chips */
-.groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.grp{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
-.grp h3{margin:0 0 12px;font-size:15px;font-weight:600}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chips span{font-size:13px;padding:5px 11px;border-radius:999px;background:var(--soft);color:var(--ink-2);transition:background .2s,color .2s}
-.chips span:hover{background:var(--river);color:#fff}
+/* skills */
+.groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.grp{--c:var(--cobalt);background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px}
+.grp h3{margin:0 0 16px;font-size:20px;font-weight:700;color:var(--c);letter-spacing:-.015em}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:15px;font-weight:500;padding:7px 14px;border-radius:999px;background:var(--soft);color:var(--ink-2);transition:background .2s,color .2s,transform .2s}
+.chips span:hover{background:var(--c);color:#fff;transform:translateY(-2px)}
 
 /* edu */
-.edu{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px}
-.card .tag{font-size:12.5px;color:var(--water);font-weight:600}
-.card h3{margin:4px 0 8px;font-size:18px;font-weight:600}
-.card p{margin:0;color:var(--ink-2);font-size:15px}
+.edu{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px}
+.card .tag{font-size:14.5px;color:var(--cyan);font-weight:700}
+.card h3{margin:6px 0 10px;font-size:22px;font-weight:700;letter-spacing:-.02em}
+.card p{margin:0;color:var(--ink-2);font-size:16.5px}
 
-.closing{margin-top:88px;padding-top:40px;border-top:1px solid var(--line)}
-.closing p{font-family:var(--display);font-weight:500;font-size:clamp(20px,2.6vw,26px);line-height:1.5;letter-spacing:-.015em;max-width:30em;margin:0}
-.closing small{display:block;margin-top:18px;color:var(--ink-3);font-size:13px}
+/* closing */
+.closing{margin:120px 0 0;background:var(--night);color:#fff;padding:96px 0 104px;position:relative;overflow:hidden}
+.closing::before{content:"";position:absolute;width:640px;height:640px;right:-180px;bottom:-320px;border-radius:50%;background:radial-gradient(closest-side,rgba(138,63,252,.45),transparent)}
+.closing .container{position:relative}
+.closing p{font-family:var(--display);font-weight:700;font-size:clamp(28px,3.8vw,44px);line-height:1.4;letter-spacing:-.03em;max-width:22em;margin:0}
+.closing p .g{background:linear-gradient(100deg,#8EA2FF,#C29BFF 55%,#6FE6F2);-webkit-background-clip:text;background-clip:text}
+.closing small{display:block;margin-top:28px;color:rgba(255,255,255,.55);font-size:15px}
 
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
-/* career timeline */
-.tl{list-style:none;margin:0;padding:0;position:relative}
-.tl::before{content:"";position:absolute;left:111px;top:10px;bottom:10px;width:2px;
-  background:linear-gradient(var(--river),color-mix(in srgb,var(--water) 60%,transparent))}
-.job{display:grid;grid-template-columns:96px 32px minmax(0,1fr);align-items:start;padding:0 0 34px;position:relative}
-.job:last-child{padding-bottom:0}
-.when{font-size:13px;color:var(--ink-3);text-align:right;padding-top:3px;line-height:1.45}
-.when b{display:block;font-family:var(--display);font-size:20px;color:var(--ink);font-weight:700;letter-spacing:-.02em}
-.dot{justify-self:center;margin-top:9px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--river);position:relative;z-index:1;transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s}
-.job.now .dot{background:var(--river)}
-.job.now .dot::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px solid var(--river);animation:pulse 2.4s ease-out infinite}
-@keyframes pulse{from{transform:scale(.6);opacity:.9}to{transform:scale(1.5);opacity:0}}
-.jc{margin-left:10px;padding:18px 22px;border-radius:14px;border:1px solid transparent;transition:background .3s,border-color .3s,transform .3s cubic-bezier(.2,.8,.2,1)}
-.job:hover .jc{background:var(--surface);border-color:var(--line);transform:translateX(4px)}
-.job:hover .dot{transform:scale(1.3);background:var(--river)}
-.jc .co{font-size:13px;color:var(--water);font-weight:600}
-.jc h3{margin:2px 0 2px;font-size:19px;font-weight:600;letter-spacing:-.01em}
-.jc .dur{font-size:13.5px;color:var(--ink-3);margin:0 0 10px}
-.jc p{margin:0;color:var(--ink-2);font-size:15px}
-.teams{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding:0;list-style:none}
-.teams li{font-size:13px;padding:5px 11px;border-radius:8px;background:var(--soft);color:var(--ink-2)}
-.thread{margin-top:28px;padding:18px 22px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:15px;color:var(--ink-2)}
-.thread b{color:var(--ink);font-weight:600}
-@media (max-width:560px){
-  .tl::before{left:7px}
-  .job{grid-template-columns:16px minmax(0,1fr);row-gap:4px}
-  .dot{grid-column:1;grid-row:1;margin-top:6px}
-  .when{grid-column:2;grid-row:1;text-align:left;margin-left:10px}
-  .when b{display:inline;font-size:17px;margin-right:6px}
-  .jc{grid-column:2;grid-row:2}
-}
-
-@media (max-width:900px){
-  .page{grid-template-columns:1fr;gap:0}
-  nav.side{display:none}
-  .rolebox,.ax,.edu{grid-template-columns:1fr}
+@media (max-width:980px){
+  .role,.ax,.edu{grid-template-columns:1fr}
+  .scope{grid-template-columns:repeat(2,minmax(0,1fr))}
   .groups{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){padding-left:0;border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid rgba(255,255,255,.12)}
+  .nav ul{display:none}
 }
-@media (max-width:560px){
-  .page{padding:0 18px}
-  main{padding-top:36px}
-  .rolebox{padding:24px 20px}
-  .work button{padding:18px}
-  .body ul{padding:2px 18px 20px 36px}
+@media (max-width:620px){
+  body{font-size:16.5px}
+  .container{padding:0 20px}
+  .hero{padding-top:calc(120px + env(safe-area-inset-top,0px))}
+  .scope{grid-template-columns:1fr}
+  .tl::before{left:8px}
+  .job{grid-template-columns:20px minmax(0,1fr);row-gap:6px}
+  .dot{grid-column:1;grid-row:1;margin-top:10px}
+  .when{grid-column:2;grid-row:1;text-align:left;margin-left:14px;padding-top:0}
+  .when b{display:inline;font-size:24px;margin-right:8px}
+  .jc{grid-column:2;grid-row:2;padding:20px}
+  .work button{padding:20px 20px 20px 0;gap:16px}
+  .body ul{padding:0 20px 22px 44px}
+  .rcard,.thread,.card,.grp{padding:24px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -191,82 +245,107 @@ section{padding:72px 0 0}
   .reveal{opacity:1;transform:none}
 }
 @media print{
-  nav.side{display:none}
-  .page{grid-template-columns:1fr}
+  .nav{display:none}
   .body{grid-template-rows:1fr !important}
   .reveal{opacity:1;transform:none}
   .pm{display:none}
+  section{padding-top:48px}
 }
 </style>
 </head>
 <body>
-<div class="page">
-  <nav class="side" aria-label="섹션">
+
+<header class="nav" id="nav">
+  <div class="container">
     <a class="mark" href="#top">리버스카이</a>
-    <ol>
+    <nav aria-label="섹션"><ul>
       <li><a href="#role">현재 역할</a></li>
       <li><a href="#career">경력</a></li>
       <li><a href="#ax">AI 전환</a></li>
       <li><a href="#work">주요 업무</a></li>
       <li><a href="#skills">역량</a></li>
-      <li><a href="#edu">학업과 커뮤니티</a></li>
-    </ol>
-  </nav>
+      <li><a href="#edu">학업</a></li>
+    </ul></nav>
+  </div>
+</header>
 
-  <main id="top">
-    <header class="hero">
-      <p class="role">CTO · 검색엔진 개발자 출신 엔지니어링 리더</p>
-      <h1>리버스카이<span class="en">Riversky</span></h1>
-      <svg class="river" viewBox="0 0 800 56" preserveAspectRatio="none" aria-hidden="true">
-        <path class="a" d="M0 34 C120 6, 220 52, 340 28 S560 6, 680 26 S780 40, 800 30"/>
-        <path class="b" d="M0 44 C140 22, 240 58, 360 38 S580 18, 700 36 S780 48, 800 42"/>
+<main id="top">
+  <div class="hero">
+    <div class="container">
+      <span class="kicker"><i aria-hidden="true"></i>11번가 개발그룹 총괄 CTO</span>
+      <h1><span class="g">리버스카이</span></h1>
+      <p class="title">검색엔진 개발자에서 이커머스 플랫폼 CTO까지</p>
+      <p class="lead">24년간 검색, 데이터, 플랫폼을 만들어 왔습니다. 지금은 서비스 개발부터 데이터, 인프라, 보안까지 약 200명의 개발그룹을 이끌며 대규모 시스템과 조직을 AI 중심으로 전환하고 있습니다.</p>
+      <svg class="river" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="#6E87FF"/><stop offset=".55" stop-color="#B07CFF"/><stop offset="1" stop-color="#4FE0EE"/></linearGradient></defs>
+        <path class="a" d="M0 36 C150 6, 280 56, 430 30 S700 6, 850 28 S970 42, 1000 32"/>
+        <path class="b" d="M0 48 C170 24, 300 62, 450 40 S720 18, 870 38 S970 52, 1000 46"/>
       </svg>
-      <p class="lead">검색엔진 개발자로 시작해 24년간 이커머스 검색, 데이터, 플랫폼을 만들어 왔습니다. 지금은 11번가 개발그룹 약 200명을 이끌며 대규모 시스템과 조직을 AI 중심으로 전환하고 있습니다.</p>
-      <ul class="facts">
-        <li><b>현재</b>11번가 개발그룹 총괄 CTO</li>
-        <li><b>경력</b>2002년부터, 이커머스 3사</li>
-        <li><b>관심</b>대규모 플랫폼 조직의 AX 전략</li>
-        <li><b>학업</b>성균관대 기술경영(MOT) 석사과정</li>
-      </ul>
-    </header>
+      <div class="stats">
+        <div class="stat"><b data-count="24">24<small>년</small></b><span>개발 경력 (2002~)</span></div>
+        <div class="stat"><b data-count="200">200<small>명</small></b><span>개발그룹 규모 (약)</span></div>
+        <div class="stat"><b data-count="10">10<small>개</small></b><span>개발 유닛 (약)</span></div>
+        <div class="stat"><b data-count="3">3<small>사</small></b><span>이커머스 플랫폼 경력</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
 
     <section id="role" class="reveal">
-      <div class="sh"><h2>현재 역할</h2><p>11번가</p></div>
-      <div class="rolebox">
-        <div>
+      <div class="sh">
+        <p class="eyebrow g">현재 역할</p>
+        <h2>서비스부터 인프라와 보안까지, <span class="g">개발그룹 전체</span>를 책임집니다</h2>
+      </div>
+      <div class="role">
+        <div class="rcard">
+          <span class="co">11번가</span>
           <h3>개발그룹 총괄 CTO</h3>
-          <p class="org">11번가 · 2020년 10월 ~ 현재</p>
+          <p class="p">2020년 10월 – 현재</p>
           <ul>
-            <li>전시, 검색, 할인, 마케팅 등 커머스 전 영역의 개발 조직 운영</li>
             <li>개발 전략, 아키텍처 방향, 조직 설계와 운영 모델 수립</li>
+            <li>데이터·인프라·보안을 포함한 기술 기반 전반의 안정성 책임</li>
             <li>경영진 대상 기술·AI 전략 보고와 전사 커뮤니케이션 주관</li>
             <li>백엔드서비스개발유닛장 겸임 (개발자 18명, 기획자 5명)</li>
           </ul>
         </div>
-        <div class="scale">
-          <div><b>약 200명</b><span>개발조직 규모</span></div>
-          <div><b>약 10개</b><span>개발 유닛</span></div>
-          <div><b>개발 + 기획</b><span>겸임 유닛의 통합 운영 경험</span></div>
+        <div class="scope">
+          <div class="dom" style="--c:var(--cobalt)"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+            <h4>서비스 개발</h4><p>전시, 검색, 할인, 마케팅 등 커머스 전 영역</p></div>
+          <div class="dom" style="--c:var(--violet)"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+            <h4>모바일</h4><p>Android·iOS 앱, 크로스플랫폼 전환 검토</p></div>
+          <div class="dom" style="--c:var(--coral)"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 5.3L20 9l-4.3 3.9L17 19l-5-3-5 3 1.3-6.1L4 9l5.8-.7z"/></svg></div>
+            <h4>AI·검색</h4><p>검색 고도화, 개인화, AI 에이전트 플랫폼</p></div>
+          <div class="dom" style="--c:var(--cyan)"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+            <h4>데이터 엔지니어링</h4><p>RDB, HDFS, MongoDB 등 데이터 플랫폼 운영</p></div>
+          <div class="dom" style="--c:#14A86B"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 01-.6-9 6 6 0 0111.6 1.5A3.8 3.8 0 0117.5 18z"/></svg></div>
+            <h4>인프라</h4><p>시스템 엔지니어링, 클라우드 엔지니어링</p></div>
+          <div class="dom" style="--c:#E8890C"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <h4>보안</h4><p>서비스·인프라 보안, 위협 대응 체계</p></div>
+          <p class="scope-note">개발그룹 관할 영역</p>
         </div>
       </div>
     </section>
 
-
     <section id="career" class="reveal">
-      <div class="sh"><h2>경력</h2><p>2002 – 현재</p></div>
+      <div class="sh">
+        <p class="eyebrow g">경력</p>
+        <h2>24년, <span class="g">검색에서 플랫폼으로</span></h2>
+      </div>
       <ol class="tl">
         <li class="job now">
           <div class="when"><b>2020</b>10월 – 현재</div><span class="dot" aria-hidden="true"></span>
           <div class="jc"><span class="co">11번가</span><h3>개발그룹 총괄 CTO</h3>
             <p class="dur">2020년 10월 – 현재</p>
-            <p>개발그룹 약 200명, 약 10개 유닛을 총괄합니다. 커머스 전 영역의 개발 전략과 아키텍처, 조직 운영 모델을 책임지고 전사 AI 전환을 이끌고 있습니다.</p></div>
+            <p>약 200명, 약 10개 유닛의 개발그룹을 총괄합니다. 서비스 개발, 모바일, 데이터 엔지니어링, 인프라, 보안까지 기술 조직 전체를 책임지며 전사 AI 전환을 이끌고 있습니다.</p>
+            <ul class="tags" style="--c:var(--cobalt)"><li>서비스 개발</li><li>모바일</li><li>데이터 엔지니어링</li><li>인프라</li><li>보안</li></ul></div>
         </li>
         <li class="job">
           <div class="when"><b>2010</b>5월 – 2020년 10월</div><span class="dot" aria-hidden="true"></span>
           <div class="jc"><span class="co">Qoo10</span><h3>기술본부 Info Platform실 실장 (이사)</h3>
             <p class="dur">10년 6개월</p>
             <p>검색, 데이터, 사내 시스템을 아우르는 정보 플랫폼 조직을 이끌며 하위 3개 개발 조직을 관리했습니다.</p>
-            <ul class="teams"><li>AI·빅데이터 개발팀</li><li>검색엔진 개발그룹</li><li>BI 및 사내시스템 개발팀</li></ul></div>
+            <ul class="tags"><li>AI·빅데이터 개발팀</li><li>검색엔진 개발그룹</li><li>BI 및 사내시스템 개발팀</li></ul></div>
         </li>
         <li class="job">
           <div class="when"><b>2008</b>2월 – 2010년 5월</div><span class="dot" aria-hidden="true"></span>
@@ -281,16 +360,26 @@ section{padding:72px 0 0}
             <p>검색엔진, 크롤러, 웹문서 필터 솔루션을 개발하며 검색 기술의 기본기를 다졌습니다.</p></div>
         </li>
       </ol>
-      <p class="thread"><b>하나로 이어지는 흐름.</b> 검색엔진 개발자에서 검색 조직 리더로, 다시 데이터·AI 플랫폼과 개발그룹 전체를 이끄는 CTO로 범위를 넓혀 왔습니다. 검색과 데이터에서 출발한 경험이 지금의 AI 전환 전략의 바탕입니다.</p>
+      <div class="thread">
+        <div class="flow"><span class="g">검색엔진 개발</span><span class="arrow" aria-hidden="true">→</span><span class="g">검색·데이터 조직 리더</span><span class="arrow" aria-hidden="true">→</span><span class="g">개발그룹 총괄 CTO</span></div>
+        <p>검색과 데이터에서 출발한 깊이 있는 기술 경험이, 지금 서비스·데이터·인프라·보안을 아우르는 조직 운영과 AI 전환 전략의 바탕입니다.</p>
+      </div>
     </section>
 
     <section id="ax" class="reveal">
-      <div class="sh"><h2>AI 전환(AX)</h2><p>대표 이니셔티브</p></div>
+      <div class="sh">
+        <p class="eyebrow g">AI 전환 (AX)</p>
+        <h2>부서마다 AI 에이전트가 일하는 <span class="g">엔터프라이즈 AI 플랫폼</span></h2>
+      </div>
       <div class="ax">
         <div>
-          <p>부서별 AI 에이전트가 사내 시스템과 데이터에 안전하게 접근하도록, 공통 MCP 계층을 중심에 둔 연합형(Federated) 엔터프라이즈 AI 에이전트 플랫폼을 설계했습니다.</p>
-          <p>사내 Confluence·Jira를 MCP로 연결하고, 사내 지식 검색 에이전트를 원격 MCP로 연동해 실제 업무에서 쓰이는 구조를 만들었습니다.</p>
-          <p>위키·Jira 자동 업데이트, 회의 자동화 파이프라인, 부서별 모닝 브리핑 에이전트로 업무 사이클 자동화를 추진하고 있습니다.</p>
+          <p class="big">공통 MCP 계층을 중심에 둔 연합형(Federated) 아키텍처로, 부서별 에이전트가 사내 시스템과 데이터에 안전하게 접근하도록 설계했습니다.</p>
+          <ul>
+            <li>사내 Confluence·Jira를 MCP로 연결</li>
+            <li>사내 지식 검색 에이전트를 원격 MCP로 연동</li>
+            <li>위키·Jira 자동 업데이트, 회의 자동화 파이프라인</li>
+            <li>부서별 모닝 브리핑 에이전트 추진</li>
+          </ul>
         </div>
         <div>
           <div class="stack" role="list">
@@ -300,16 +389,29 @@ section{padding:72px 0 0}
             <div class="layer core" tabindex="0" role="listitem"><i>2</i><span><b>공유 MCP 계층</b><small>위키·이슈·지식검색 등을 표준 인터페이스로 제공</small></span></div>
             <div class="layer" tabindex="0" role="listitem"><i>1</i><span><b>데이터와 시스템</b><small>사내 데이터, 레거시, 운영 시스템</small></span></div>
           </div>
-          <p class="stack-cap">설계한 5계층 아키텍처. 각 층에 마우스를 올리면 역할이 보입니다.</p>
+          <p class="cap">직접 설계한 5계층 아키텍처. 각 층에 마우스를 올리면 역할이 보입니다.</p>
         </div>
       </div>
     </section>
 
     <section id="work" class="reveal">
-      <div class="sh"><h2>주요 업무</h2><p>눌러서 자세히 보기</p></div>
+      <div class="sh">
+        <p class="eyebrow g">주요 업무</p>
+        <h2>전략부터 실행까지</h2>
+        <p class="d">항목을 누르면 자세한 내용이 펼쳐집니다.</p>
+      </div>
       <div class="works">
-
-        <article class="work">
+        <article class="work" style="--c:var(--cyan)">
+          <button aria-expanded="false"><span><span class="tag">데이터 · 인프라 · 보안</span><h3>기술 기반 운영과 안정성</h3>
+            <p class="one">서비스를 떠받치는 데이터, 인프라, 보안 조직을 함께 이끕니다</p></span><span class="pm" aria-hidden="true"></span></button>
+          <div class="body"><div><ul>
+            <li>RDB, HDFS, MongoDB 등 이기종 데이터 플랫폼을 운영하는 데이터 엔지니어링 조직 관리</li>
+            <li>시스템·클라우드 엔지니어링 조직을 통해 온프레미스와 클라우드 인프라 운영</li>
+            <li>보안 조직을 개발그룹 안에 두어 개발·인프라와 일체화된 보안 대응 체계 운영</li>
+            <li>경영진 보고와 전사 공지를 통한 기술 리스크 커뮤니케이션 주관</li>
+          </ul></div></div>
+        </article>
+        <article class="work" style="--c:var(--coral)">
           <button aria-expanded="false"><span><span class="tag">AI · 검색</span><h3>AI 모델 평가와 자연어 검색 전략</h3>
             <p class="one">모델 벤치마크와 Make-or-Buy 판단으로 검색 고도화 방향 수립</p></span><span class="pm" aria-hidden="true"></span></button>
           <div class="body"><div><ul>
@@ -317,8 +419,7 @@ section{padding:72px 0 0}
             <li>자연어 검색을 위한 구조화된 상품 지식 데이터 도입안을 분석해, 성공 조건 프레임워크와 Make-vs-Buy 전략 판단을 경영진에 브리핑</li>
           </ul></div></div>
         </article>
-
-        <article class="work">
+        <article class="work" style="--c:var(--violet)">
           <button aria-expanded="false"><span><span class="tag">커머스 · 개인화</span><h3>LLM 기반 초개인화 타겟팅 기획전</h3>
             <p class="one">고객 행동별로 다른 추천 확장 전략을 설계</p></span><span class="pm" aria-hidden="true"></span></button>
           <div class="body"><div><ul>
@@ -326,8 +427,7 @@ section{padding:72px 0 0}
             <li>구매 고객은 카테고리 확장, 조회 후 미구매 고객은 같은 공간·용도까지만 확장하는 등 고객 상황별 추천 범위 정책 수립</li>
           </ul></div></div>
         </article>
-
-        <article class="work">
+        <article class="work" style="--c:#E8890C">
           <button aria-expanded="false"><span><span class="tag">커머스 · 프라이싱</span><h3>할인 구조 개선</h3>
             <p class="one">이해관계자 조율과 경영진 보고를 이끈 전사 과제</p></span><span class="pm" aria-hidden="true"></span></button>
           <div class="body"><div><ul>
@@ -335,8 +435,7 @@ section{padding:72px 0 0}
             <li>복잡한 논의를 한 장 요약으로 정리해 경영진 보고</li>
           </ul></div></div>
         </article>
-
-        <article class="work">
+        <article class="work" style="--c:var(--cobalt)">
           <button aria-expanded="false"><span><span class="tag">조직 설계</span><h3>운영 모델과 조직 전환</h3>
             <p class="one">기능 조직에서 목적 조직으로, 유닛 통합과 역할 전환 설계</p></span><span class="pm" aria-hidden="true"></span></button>
           <div class="body"><div><ul>
@@ -346,8 +445,7 @@ section{padding:72px 0 0}
             <li>성장과 커리어 중심의 1:1 대화 프레임 마련</li>
           </ul></div></div>
         </article>
-
-        <article class="work">
+        <article class="work" style="--c:#14A86B">
           <button aria-expanded="false"><span><span class="tag">아키텍처</span><h3>레거시 정리와 시스템 효율화</h3>
             <p class="one">한정된 리소스로 리스크를 줄이는 개발그룹 전략</p></span><span class="pm" aria-hidden="true"></span></button>
           <div class="body"><div><ul>
@@ -356,8 +454,7 @@ section{padding:72px 0 0}
             <li>모바일 조직 하반기 미션 정의, KMP 기반 Android·iOS 통합 검토</li>
           </ul></div></div>
         </article>
-
-        <article class="work">
+        <article class="work" style="--c:var(--coral)">
           <button aria-expanded="false"><span><span class="tag">빌더</span><h3>직접 만드는 AI 자동화</h3>
             <p class="one">리더이면서 직접 도구를 만들고 실험합니다</p></span><span class="pm" aria-hidden="true"></span></button>
           <div class="body"><div><ul>
@@ -366,24 +463,23 @@ section{padding:72px 0 0}
             <li>SQL·데이터 파이프라인 문제를 직접 디버깅할 정도로 실무 감각 유지</li>
           </ul></div></div>
         </article>
-
       </div>
     </section>
 
     <section id="skills" class="reveal">
-      <div class="sh"><h2>역량</h2></div>
+      <div class="sh"><p class="eyebrow g">역량</p><h2>리더십과 기술, 그리고 손으로 만드는 힘</h2></div>
       <div class="groups">
-        <div class="grp"><h3>리더십</h3><div class="chips">
+        <div class="grp" style="--c:var(--cobalt)"><h3>리더십</h3><div class="chips">
           <span>24년 개발 경력</span><span>200명 규모 조직 운영</span><span>조직 설계</span><span>목적 조직 전환</span><span>변화관리</span><span>경영진 보고</span><span>전사 커뮤니케이션</span></div></div>
-        <div class="grp"><h3>기술 전략</h3><div class="chips">
-          <span>엔터프라이즈 AI 플랫폼</span><span>MCP</span><span>AI 에이전트</span><span>MSA</span><span>레거시 현대화</span><span>검색엔진</span><span>검색·개인화</span></div></div>
-        <div class="grp"><h3>실무 도구</h3><div class="chips">
-          <span>Claude 스킬</span><span>Playwright</span><span>SQL</span><span>데이터 파이프라인</span><span>Confluence·Jira</span><span>KMP</span></div></div>
+        <div class="grp" style="--c:var(--violet)"><h3>기술 전략</h3><div class="chips">
+          <span>엔터프라이즈 AI 플랫폼</span><span>MCP</span><span>AI 에이전트</span><span>검색엔진</span><span>검색·개인화</span><span>MSA</span><span>레거시 현대화</span></div></div>
+        <div class="grp" style="--c:var(--cyan)"><h3>데이터 · 인프라 · 보안</h3><div class="chips">
+          <span>RDB</span><span>HDFS</span><span>MongoDB</span><span>데이터 파이프라인</span><span>시스템 엔지니어링</span><span>클라우드</span><span>보안 거버넌스</span></div></div>
       </div>
     </section>
 
     <section id="edu" class="reveal">
-      <div class="sh"><h2>학업과 커뮤니티</h2></div>
+      <div class="sh"><p class="eyebrow g">학업과 커뮤니티</p><h2>현장의 경험을 이론과 연결합니다</h2></div>
       <div class="edu">
         <div class="card"><span class="tag">2026년 3월 입학</span><h3>성균관대학교 기술경영(MOT) 석사과정</h3>
           <p>기술전략, 기술기획, 린스타트업, 오픈이노베이션 등을 공부하며 현업의 AI 전환 경험을 경영 이론과 연결하고 있습니다.</p></div>
@@ -391,28 +487,49 @@ section{padding:72px 0 0}
           <p>동기 원우회를 이끌며 교수진 소통, 콜로키움과 학기 행사를 기획·운영하고 있습니다.</p></div>
       </div>
     </section>
+  </div>
 
-    <footer class="closing reveal">
-      <p>거대한 시스템과 큰 조직이 더 가볍고 빠르게 움직이도록, 사람과 AI가 함께 일하는 구조를 설계합니다.</p>
+  <footer class="closing reveal">
+    <div class="container">
+      <p>거대한 시스템과 큰 조직이 더 가볍고 빠르게 움직이도록, <span class="g">사람과 AI가 함께 일하는 구조</span>를 설계합니다.</p>
       <small>개인 연락처와 신상 정보는 포함하지 않았습니다.</small>
-    </footer>
-  </main>
-</div>
+    </div>
+  </footer>
+</main>
 
 <script>
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 document.querySelectorAll(".work button").forEach(b=>{
   b.addEventListener("click",()=>{
     const w=b.closest(".work"), open=!w.classList.contains("open");
     w.classList.toggle("open",open); b.setAttribute("aria-expanded",open);
   });
 });
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
-const links=[...document.querySelectorAll(".side ol a")];
+
+const nav=document.getElementById("nav"), hero=document.querySelector(".hero");
+const onScroll=()=>nav.classList.toggle("solid", scrollY > hero.offsetHeight - 80);
+addEventListener("scroll",onScroll,{passive:true}); onScroll();
+
+const links=[...document.querySelectorAll(".nav ul a")];
 const spy=new IntersectionObserver(es=>es.forEach(e=>{
-  if(e.isIntersecting){links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}
-}),{rootMargin:"-40% 0px -55% 0px"});
-document.querySelectorAll("main section[id]").forEach(s=>spy.observe(s));
+  if(e.isIntersecting) links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id));
+}),{rootMargin:"-45% 0px -50% 0px"});
+document.querySelectorAll("section[id]").forEach(s=>spy.observe(s));
+
+if(!reduce){
+  document.querySelectorAll("[data-count]").forEach(el=>{
+    const end=+el.dataset.count, unit=el.querySelector("small").outerHTML, t0=performance.now()+300, dur=1400;
+    el.innerHTML="0"+unit;
+    const tick=now=>{
+      const p=Math.min(Math.max((now-t0)/dur,0),1), e=1-Math.pow(1-p,3);
+      el.innerHTML=Math.round(end*e)+unit;
+      if(p<1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}
 </script>
 </body>
 </html>
