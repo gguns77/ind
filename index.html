@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>리버스카이 | CTO · Engineering Leader</title>
-<meta name="description" content="검색엔진 개발자에서 이커머스 플랫폼 CTO까지, 리버스카이의 경력과 업무 소개">
+<title>설건호 | CTO · Engineering Leader</title>
+<meta name="description" content="검색엔진 개발자에서 이커머스 플랫폼 CTO까지, 설건호의 경력과 업무 소개">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -112,7 +112,6 @@ section{padding:112px 0 0}
 .dom .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c);margin-bottom:16px}
 .dom h4{margin:0;font-size:19px;font-weight:700;letter-spacing:-.015em}
 .dom p{margin:6px 0 0;font-size:15px;color:var(--ink-2);line-height:1.6}
-.dom.new h4::after{content:"신규 추가";display:none}
 .scope-note{grid-column:1 / -1;font-size:15px;color:var(--ink-3);margin:4px 0 0}
 
 /* timeline */
@@ -214,6 +213,19 @@ section{padding:112px 0 0}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
+/* MOT motivation */
+.why{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:44px 44px 40px;margin-bottom:14px;position:relative;overflow:hidden}
+.why::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--grad)}
+.quote{font-family:var(--display);font-weight:800;font-size:clamp(28px,3.6vw,42px);line-height:1.3;letter-spacing:-.035em;margin:0;max-width:20em}
+.why-body{font-size:18px;line-height:1.85;color:var(--ink-2);margin:22px 0 0;max-width:46em}
+.motives{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:32px}
+.mv{border-radius:16px;padding:22px;background:color-mix(in srgb,var(--c) 8%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 22%,transparent);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.mv:hover{transform:translateY(-4px);box-shadow:0 18px 38px -26px var(--c)}
+.mv b{display:block;font-size:19px;font-weight:700;color:var(--c);letter-spacing:-.015em}
+.mv p{margin:8px 0 0;font-size:16px;color:var(--ink-2);line-height:1.65}
+@media (max-width:980px){.motives{grid-template-columns:1fr}}
+@media (max-width:620px){.why{padding:28px 22px}}
+
 @media (max-width:980px){
   .role,.ax,.edu{grid-template-columns:1fr}
   .scope{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -257,7 +269,7 @@ section{padding:112px 0 0}
 
 <header class="nav" id="nav">
   <div class="container">
-    <a class="mark" href="#top">리버스카이</a>
+    <a class="mark" href="#top">설건호</a>
     <nav aria-label="섹션"><ul>
       <li><a href="#role">현재 역할</a></li>
       <li><a href="#career">경력</a></li>
@@ -273,7 +285,7 @@ section{padding:112px 0 0}
   <div class="hero">
     <div class="container">
       <span class="kicker"><i aria-hidden="true"></i>11번가 개발그룹 총괄 CTO</span>
-      <h1><span class="g">리버스카이</span></h1>
+      <h1><span class="g">설건호</span></h1>
       <p class="title">검색엔진 개발자에서 이커머스 플랫폼 CTO까지</p>
       <p class="lead">24년간 검색, 데이터, 플랫폼을 만들어 왔습니다. 지금은 서비스 개발부터 데이터, 인프라, 보안까지 약 200명의 개발그룹을 이끌며 대규모 시스템과 조직을 AI 중심으로 전환하고 있습니다.</p>
       <svg class="river" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true">
@@ -322,7 +334,7 @@ section{padding:112px 0 0}
             <h4>인프라</h4><p>시스템 엔지니어링, 클라우드 엔지니어링</p></div>
           <div class="dom" style="--c:#E8890C"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
             <h4>보안</h4><p>서비스·인프라 보안, 위협 대응 체계</p></div>
-          <p class="scope-note">개발그룹 관할 영역</p>
+          <p class="scope-note">개발그룹이 관할하는 6개 영역</p>
         </div>
       </div>
     </section>
@@ -407,8 +419,8 @@ section{padding:112px 0 0}
           <div class="body"><div><ul>
             <li>RDB, HDFS, MongoDB 등 이기종 데이터 플랫폼을 운영하는 데이터 엔지니어링 조직 관리</li>
             <li>시스템·클라우드 엔지니어링 조직을 통해 온프레미스와 클라우드 인프라 운영</li>
-            <li>보안 조직을 개발그룹 안에 두어 개발·인프라와 일체화된 보안 대응 체계 운영</li>
-            <li>경영진 보고와 전사 공지를 통한 기술 리스크 커뮤니케이션 주관</li>
+            <li>개발그룹 산하 보안 조직을 통해 개발·인프라와 긴밀하게 연계된 보안 대응 체계 운영</li>
+            <li>기술 리스크에 대한 경영진 보고와 전사 커뮤니케이션 주관</li>
           </ul></div></div>
         </article>
         <article class="work" style="--c:var(--coral)">
@@ -423,7 +435,7 @@ section{padding:112px 0 0}
           <button aria-expanded="false"><span><span class="tag">커머스 · 개인화</span><h3>LLM 기반 초개인화 타겟팅 기획전</h3>
             <p class="one">고객 행동별로 다른 추천 확장 전략을 설계</p></span><span class="pm" aria-hidden="true"></span></button>
           <div class="body"><div><ul>
-            <li>상품 기획전에 LLM 기반 개인화를 적용하는 구조를 설계</li>
+            <li>상품 기획전에 LLM 기반 개인화를 적용하는 구조 설계</li>
             <li>구매 고객은 카테고리 확장, 조회 후 미구매 고객은 같은 공간·용도까지만 확장하는 등 고객 상황별 추천 범위 정책 수립</li>
           </ul></div></div>
         </article>
@@ -432,7 +444,7 @@ section{padding:112px 0 0}
             <p class="one">이해관계자 조율과 경영진 보고를 이끈 전사 과제</p></span><span class="pm" aria-hidden="true"></span></button>
           <div class="body"><div><ul>
             <li>플랫폼 할인 구조 개선 과제에서 관련 부서 간 조율과 의사결정 지원</li>
-            <li>복잡한 논의를 한 장 요약으로 정리해 경영진 보고</li>
+            <li>복잡한 논의를 한 장으로 요약해 경영진에 보고</li>
           </ul></div></div>
         </article>
         <article class="work" style="--c:var(--cobalt)">
@@ -446,12 +458,12 @@ section{padding:112px 0 0}
           </ul></div></div>
         </article>
         <article class="work" style="--c:#14A86B">
-          <button aria-expanded="false"><span><span class="tag">아키텍처</span><h3>레거시 정리와 시스템 효율화</h3>
-            <p class="one">한정된 리소스로 리스크를 줄이는 개발그룹 전략</p></span><span class="pm" aria-hidden="true"></span></button>
+          <button aria-expanded="false"><span><span class="tag">아키텍처 · 모바일</span><h3>레거시 정리와 시스템 효율화</h3>
+            <p class="one">한정된 리소스로 리스크를 줄이고 속도를 높이는 개발그룹 전략</p></span><span class="pm" aria-hidden="true"></span></button>
           <div class="body"><div><ul>
-            <li>잘게 쪼개진 MSA의 통합과 레거시 제거 로드맵 수립</li>
+            <li>과도하게 세분화된 MSA의 통합과 레거시 제거 로드맵 수립</li>
             <li>기여도가 낮은 서비스·시스템을 선별해 단계적으로 종료하는 기준 마련</li>
-            <li>모바일 조직 하반기 미션 정의, KMP 기반 Android·iOS 통합 검토</li>
+            <li>모바일 조직의 하반기 미션 정의, KMP 기반 Android·iOS 코드 통합 검토</li>
           </ul></div></div>
         </article>
         <article class="work" style="--c:var(--coral)">
@@ -460,14 +472,14 @@ section{padding:112px 0 0}
           <div class="body"><div><ul>
             <li>업무용 Claude 스킬과 MCP 연동을 직접 개발 (뉴스 요약, 메신저 연동, 주간 업무 요약 자동 게시 등)</li>
             <li>Playwright 기반 이커머스 판매자 검증 워크플로우 구현</li>
-            <li>SQL·데이터 파이프라인 문제를 직접 디버깅할 정도로 실무 감각 유지</li>
+            <li>SQL과 데이터 파이프라인 문제를 직접 디버깅하며 실무 감각 유지</li>
           </ul></div></div>
         </article>
       </div>
     </section>
 
     <section id="skills" class="reveal">
-      <div class="sh"><p class="eyebrow g">역량</p><h2>리더십과 기술, 그리고 손으로 만드는 힘</h2></div>
+      <div class="sh"><p class="eyebrow g">역량</p><h2>조직을 이끄는 리더십, 직접 만드는 기술력</h2></div>
       <div class="groups">
         <div class="grp" style="--c:var(--cobalt)"><h3>리더십</h3><div class="chips">
           <span>24년 개발 경력</span><span>200명 규모 조직 운영</span><span>조직 설계</span><span>목적 조직 전환</span><span>변화관리</span><span>경영진 보고</span><span>전사 커뮤니케이션</span></div></div>
@@ -479,12 +491,21 @@ section{padding:112px 0 0}
     </section>
 
     <section id="edu" class="reveal">
-      <div class="sh"><p class="eyebrow g">학업과 커뮤니티</p><h2>현장의 경험을 이론과 연결합니다</h2></div>
+      <div class="sh"><p class="eyebrow g">학업과 커뮤니티</p><h2>기술의 언어에 <span class="g">경영의 언어</span>를 더합니다</h2></div>
+      <div class="why">
+        <p class="quote">좋은 기술 결정은 결국 <span class="g">좋은 사업 결정</span>이어야 합니다.</p>
+        <p class="why-body">CTO가 내리는 결정은 기술의 완성도만으로 평가되지 않습니다. 어떤 기술에 투자하고, 어떤 시스템을 정리하며, 어떤 새로운 사업 모델에 도전할지는 모두 회사의 사업 가치와 전략 방향으로 이어집니다. 24년간 기술 현장에서 쌓은 경험에 경영학의 체계를 더해, 기술을 넘어 사업을 함께 설계하고 혁신을 앞에서 이끄는 리더가 되고자 기술경영 석사과정에 도전했습니다.</p>
+        <div class="motives">
+          <div class="mv" style="--c:var(--cobalt)"><b>사업 가치</b><p>기술 투자를 비용이 아닌 사업 성과의 언어로 판단하고 설명합니다.</p></div>
+          <div class="mv" style="--c:var(--violet)"><b>전략과 새로운 BM</b><p>시장과 경쟁 환경을 읽고, 기술로 열 수 있는 새로운 비즈니스 모델을 검토합니다.</p></div>
+          <div class="mv" style="--c:var(--cyan)"><b>혁신 의사결정</b><p>불확실성 속에서도 근거 있는 혁신 아이디어를 실행 가능한 결정으로 연결합니다.</p></div>
+        </div>
+      </div>
       <div class="edu">
         <div class="card"><span class="tag">2026년 3월 입학</span><h3>성균관대학교 기술경영(MOT) 석사과정</h3>
-          <p>기술전략, 기술기획, 린스타트업, 오픈이노베이션 등을 공부하며 현업의 AI 전환 경험을 경영 이론과 연결하고 있습니다.</p></div>
+          <p>기술전략, 기술기획, 린스타트업, 오픈이노베이션 등을 배우며 현업의 AI 전환 경험을 경영 이론으로 검증하고 확장하고 있습니다.</p></div>
         <div class="card"><span class="tag">20기</span><h3>원우회 회장</h3>
-          <p>동기 원우회를 이끌며 교수진 소통, 콜로키움과 학기 행사를 기획·운영하고 있습니다.</p></div>
+          <p>20기 원우회를 이끌며 교수진과의 소통, 콜로키움과 학기 행사를 기획하고 운영합니다.</p></div>
       </div>
     </section>
   </div>
@@ -492,7 +513,6 @@ section{padding:112px 0 0}
   <footer class="closing reveal">
     <div class="container">
       <p>거대한 시스템과 큰 조직이 더 가볍고 빠르게 움직이도록, <span class="g">사람과 AI가 함께 일하는 구조</span>를 설계합니다.</p>
-      <small>개인 연락처와 신상 정보는 포함하지 않았습니다.</small>
     </div>
   </footer>
 </main>
